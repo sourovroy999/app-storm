@@ -107,7 +107,7 @@ const AuthProvider = ({ children }) => {
     }
   }, [])
 
-  if(loading) return <LoadingSpinner/>
+  // if(loading) return <LoadingSpinner/>
 
   const authInfo = {
     user,
