@@ -1,14 +1,67 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
 import { Link, useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
+import HostModal from '../Modal/HostRequestModal';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 
 const Navbar = () => {
 
   const {user ,logOut}=useAuth()
   console.log(user);
+
+  const[isOpen, setIsOpen]=useState(false)
+
+  const axiosSecure=useAxiosSecure()
+
+  //for modal
+
+  const [isModalOpen, setIsModalOpen]=useState(false)
+
+  const closeModal=()=>{
+    setIsModalOpen(false)
+  }
+
+  const ModalHandler=async()=>{
+    closeModal()
+
+    console.log('i want to be a host');
+
+    // try{
+    //   const currentUser={
+    //     email:user?.email,
+    //     role:'guest',
+    //     staus:'Requested'
+    //   }
+    //   const {data}=await axiosSecure.put('/user', currentUser)
+    //   console.log(data);
+    //    if(data.modifiedCount>0){
+    //       toast.success('Request to be host has been sent! please wait for admin approval')
+    //      }
+    //      else{
+    //       toast.error('please wait for admin approval')
+    //      }
+
+      
+    // } catch (error) {
+    //   //
+    //   console.log(error);
+    //   toast.error(error.message)
+      
+    // } finally{
+    //   closeModal()
+    // }
+
+    
+
+  }
+
+
+
   
   const navigate=useNavigate()
+
+
 
   const handleLogOut=async()=>{
     try {
@@ -22,6 +75,14 @@ const Navbar = () => {
     }
   }
   // console.log(user.photoURL);
+  const links=<>
+       <li><a>Home</a></li>
+    
+        <li><a>Products</a></li>
+  
+  </>
+
+
   
 
     return (
@@ -34,40 +95,39 @@ const Navbar = () => {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li><a>Item 1</a></li>
-        <li>
-          <a>Parent</a>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </li>
-        <li><a>Item 3</a></li>
+       {/* add links li */}
+       {links}
       </ul>
     </div>
-    <a className="btn btn-ghost text-xl">daisyUI</a>
+    <Link to={'/'} className="btn btn-ghost text-xl">AppStorm</Link>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
-      <li><a>Item 1</a></li>
-      <li>
-        <details>
-          <summary>Parent</summary>
-          <ul className="p-2">
-            <li><a>Submenu 1</a></li>
-            <li><a>Submenu 2</a></li>
-          </ul>
-        </details>
-      </li>
-      <li><a>Item 3</a></li>
+      {links}
     </ul>
   </div>
 
 
   <div className="navbar-end">
+    {/* Become A Host btn */}
+
+                <div className=' '>
+                  {/* {!user && ( */}
+                    <button
+                      // disabled={!user}
+                      onClick={()=>setIsModalOpen(true)}
+                      className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
+                    >
+                      Host your product
+                    </button>
+                  {/* )} */}
+                </div>
+
+                {/* modal */}
+                <HostModal isOpen={isModalOpen} closeModal={closeModal} modalHandler={ModalHandler}/>
 
     {
-      user ? <div className="dropdown dropdown-end">
+      user ? <div className="dropdown  dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
         <div className="w-10 rounded-full">
           <img
@@ -75,18 +135,20 @@ const Navbar = () => {
             src={user?.photoURL} />
         </div>
       </div>
+      <div className=''>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li>
+        className="menu menu-sm bg-red-400 dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow">
+        <p className='text-center text-xl py-1'>
           <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
+            {user?.displayName}
+           
           </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li onClick={handleLogOut}><a>Logout</a></li>
+        </p>
+        <li className='my-2 '><Link className='textarea-md py-2' to={'/dashboard'}>Dashboard</Link></li>
+        <button className='btn mt-5' onClick={handleLogOut}><a className='textarea-md py-2'>Logout</a></button>
       </ul>
+      </div>
     </div> 
     :
     <div className='flex gap-2'>

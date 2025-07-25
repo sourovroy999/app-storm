@@ -1,0 +1,84 @@
+[
+  {
+    "id": "0",
+    "name": "Prompthance",
+    "logo":"https://i.ibb.co/Q3cLfDzm/bird-2.jpg",
+    "tagline": "Enhance your AI prompts with smart templates.",
+    "description": "Prompthance helps creators and developers craft better AI prompts using templates, analytics, and sharing features.",
+    "thumbnail": "https://example.com/images/prompthance-thumb.png",
+    "screenshots": [
+      "https://example.com/images/prompthance-1.png",
+      "https://example.com/images/prompthance-2.png"
+    ],
+    "tags": ["AI", "Productivity", "Tools"],
+    "launchDate": "2025-07-17T00:00:00Z",
+    "maker": {
+      "name": "John Doe",
+      "avatar": "https://example.com/avatars/john.png"
+    },
+    "votes": 420,
+    "comments": 24
+  },
+  {
+    "id": "1",
+    "name": "PromptPilot",
+    "logo":"https://i.ibb.co/WvCmdgFL/images.jpg",
+
+    "tagline": "A command center for managing and optimizing AI prompts.",
+    "description": "PromptPilot lets users create, save, test, and share AI prompts across platforms like ChatGPT, Claude, and Gemini.",
+    "thumbnail": "https://example.com/images/promptpilot-thumb.png",
+    "screenshots": [
+      "https://example.com/images/promptpilot-1.png",
+      "https://example.com/images/promptpilot-2.png"
+    ],
+    "tags": ["AI", "Productivity", "Prompt Engineering"],
+    "launchDate": "2025-07-18T00:00:00Z",
+    "maker": {
+      "name": "Sara Khan",
+      "avatar": "https://example.com/avatars/sara.png"
+    },
+    "votes": 345,
+    "comments": 18
+  },
+  {
+    "id": "2",
+    "name": "DevDeck",
+    "logo":"https://i.ibb.co/TBZyPXsG/download.jpg",
+    "tagline": "A curated dashboard for developers, packed with tools and insights.",
+    "description": "DevDeck organizes your development life into one dashboard: GitHub stats, Stack Overflow trends, VS Code extensions, and more.",
+    "thumbnail": "https://example.com/images/devdeck-thumb.png",
+    "screenshots": [
+      "https://example.com/images/devdeck-1.png",
+      "https://example.com/images/devdeck-2.png"
+    ],
+    "tags": ["Developer Tools", "Dashboard", "Open Source"],
+    "launchDate": "2025-07-15T00:00:00Z",
+    "maker": {
+      "name": "Luis Romero",
+      "avatar": "https://example.com/avatars/luis.png"
+    },
+    "votes": 512,
+    "comments": 32
+  },
+  {
+    "id": "3",
+    "name": "StartupSnaps",
+    "logo":"https://i.ibb.co/WvCmdgFL/images.jpg",
+
+    "tagline": "Capture and showcase your startup journey visually.",
+    "description": "StartupSnaps is a tool for founders to create visual stories, combining product screenshots, metrics, and team updates in one scrollable timeline.",
+    "thumbnail": "https://example.com/images/startupsnaps-thumb.png",
+    "screenshots": [
+      "https://example.com/images/startupsnaps-1.png",
+      "https://example.com/images/startupsnaps-2.png"
+    ],
+    "tags": ["Startups", "Marketing", "Storytelling"],
+    "launchDate": "2025-07-10T00:00:00Z",
+    "maker": {
+      "name": "Nina Patel",
+      "avatar": "https://example.com/avatars/nina.png"
+    },
+    "votes": 276,
+    "comments": 10
+  }
+]

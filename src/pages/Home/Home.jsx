@@ -1,10 +1,16 @@
-import React from 'react';
+import Banner from '../../components/Home/Banner/Banner';
+import Products from '../../components/Home/Products/Products';
+import Container from '../../components/shared/Container';
 
 const Home = () => {
     return (
-        <div>
-            <h1>i from home</h1>
-        </div>
+        <>
+        <Container>
+            <Banner/>
+            <Products/>
+
+        </Container>
+        </>
     );
 };
 

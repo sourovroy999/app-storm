@@ -22,7 +22,6 @@ const Register = () => {
     createUser,
     signInWithGoogle,
     updateUserProfile,
-    loading,
     setLoading,
   } = useAuth()
 
@@ -33,8 +32,6 @@ const Register = () => {
     const email=form.email.value;
     const password=form.password.value;
     const image=form.image.files[0]
-    // const formData=new FormData();
-    // formData.append('image', image)
 
     console.log(name,email,password);
     try {

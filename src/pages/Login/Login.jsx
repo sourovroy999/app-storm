@@ -44,7 +44,7 @@ const LoginPage = () => {
       setLoading(true)
       await signInWithGoogle()
       toast.success('Login Successfull')
-
+      navigate('/')
       
     } catch (error) {
       //
