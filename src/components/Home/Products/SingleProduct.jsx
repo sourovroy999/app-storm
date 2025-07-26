@@ -5,16 +5,16 @@ import { Link } from "react-router";
 const SingleProduct = ({product}) => {
     const {
   _id,
-  name,
+  // name,
   tagline,
-  description,
-  thumbnail,
-  screenshots,
+  // description,
+  // thumbnail,
+  // screenshots,
   tags,
-  launchDate,
-  maker: { name: makerName, avatar: makerAvatar },
-  votes,
-  comments
+  // launchDate,
+  // maker: { name: makerName, avatar: makerAvatar },
+  // votes,
+  // comments
 } = product;
 
     return (

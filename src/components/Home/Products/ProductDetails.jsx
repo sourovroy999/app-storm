@@ -33,14 +33,14 @@ const ProductDetails = () => {
   name,
   tagline,
   description,
-  thumbnail,
-  screenshots,
+//   thumbnail,
+//   screenshots,
   tags,
   logo,
-  launchDate,
-  maker: { name: makerName, avatar: makerAvatar },
-  votes,
-  comments
+//   launchDate,
+//   maker: { name: makerName, avatar: makerAvatar },
+//   votes,
+//   comments
 } = product;
 
 

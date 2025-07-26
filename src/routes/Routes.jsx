@@ -5,8 +5,15 @@ import Login from "../pages/Login/Login"
 import Register from "../pages/Register/Register"
 import ErrorPage from "../components/ErrorPage/ErrorPage"
 import ProductDetails from "../components/Home/Products/ProductDetails"
-import Dashboard from "../pages/Dashboard/Dashboard"
 import DashBoardLayout from "../layouts/DashBoardLayout"
+import MyProfile from "../components/Dashboard/Sidebar/Menu/Guest/MyProfile"
+import AddProduct from "../components/Dashboard/Sidebar/Menu/Guest/AddProduct"
+import MyProducts from "../components/Dashboard/Sidebar/Menu/Guest/MyProducts"
+import ProductReviewQueue from "../components/Dashboard/Sidebar/Menu/Moderator/ProductReviewQueue"
+import ReportedContent from "../components/Dashboard/Sidebar/Menu/Moderator/ReportedContent"
+import ManageCoupons from "../components/Dashboard/Sidebar/Menu/Admin/ManageCoupons"
+import ManageUsers from "../components/Dashboard/Sidebar/Menu/Admin/ManageUsers"
+import StatisticsPage from "../components/Dashboard/Sidebar/Menu/Admin/StatisticsPage"
 
 
 export const router = createBrowserRouter([
@@ -30,8 +37,47 @@ export const router = createBrowserRouter([
         element: <DashBoardLayout/>,
         children:[
             {
-                
+                path:'/dashboard/my-profile',
+                element:<MyProfile/>
+
+            },
+            {
+                path:'add-product',
+                element:<AddProduct/>
+            
             }
+            ,
+            {
+                path:'my-products',
+                element:<MyProducts/>
+            
+            },
+            {
+                path:'product-review-queue',
+                element:<ProductReviewQueue/>
+            }
+            ,
+            {
+                path:'reported-content',
+                element:<ReportedContent/>
+            }
+            // admin
+            ,
+            {
+                path:'manage-coupons',
+                element:<ManageCoupons/>
+            }
+            ,
+            {
+                path:'manage-users',
+                element:<ManageUsers/>
+            }
+            ,
+            {
+                path:'statistics',
+                element:<StatisticsPage/>
+            }
+             
         ]
     },
 

@@ -10,9 +10,9 @@ const Navbar = () => {
   const {user ,logOut}=useAuth()
   console.log(user);
 
-  const[isOpen, setIsOpen]=useState(false)
+  // const[isOpen, setIsOpen]=useState(false)
 
-  const axiosSecure=useAxiosSecure()
+  // const axiosSecure=useAxiosSecure()
 
   //for modal
 
