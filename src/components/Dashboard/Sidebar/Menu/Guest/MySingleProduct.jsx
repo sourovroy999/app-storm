@@ -1,12 +1,16 @@
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
+import { useMutation } from '@tanstack/react-query';
 import { useState } from 'react';
 import { Link } from 'react-router';
+import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 
-const MySingleProduct = ({product, handleDeleteProduct, handleEditProduct }) => {
+const MySingleProduct = ({product, refetch }) => {
 
-
-         let [isOpen, setIsOpen] = useState(true)
+    const axiosSecure=useAxiosSecure()
+    
+         let [isOpen, setIsOpen] = useState(false)
 
   function open() {
     setIsOpen(true)
@@ -15,6 +19,38 @@ const MySingleProduct = ({product, handleDeleteProduct, handleEditProduct }) => 
   function close() {
     setIsOpen(false)
   }
+
+    
+    const {mutateAsync}=useMutation({
+        mutationFn:async id=>{
+            const {data}=await axiosSecure.delete(`products/delete/${id}`)
+            return data;
+        },
+        onSuccess:async (data)=>{
+            console.log(data);
+            refetch()
+            close()
+            toast.success('Product Deleted')
+        }
+
+    })
+
+      //delete a single product
+    const handleDeleteProduct=async(id)=>{
+        console.log('delete', id);
+        try {
+            await mutateAsync(id)
+        } catch (error) {
+            console.log(error);
+            
+            
+        }
+
+       
+        
+
+    }
+
 
 
         const {
@@ -54,9 +90,8 @@ const MySingleProduct = ({product, handleDeleteProduct, handleEditProduct }) => 
 
         <td>{status}</td>
         <th>
-          <button className="btn btn-ghost btn-xs">details</button>
+         
           
-      {/* <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Edit</button> */}
 
 <Link to={`update/${_id}`}>
         <Button
@@ -67,15 +102,19 @@ const MySingleProduct = ({product, handleDeleteProduct, handleEditProduct }) => 
       </Button>
       </Link>
 
-          <button onClick={()=>handleDeleteProduct(_id)} className="btn btn-ghost btn-xs">Delete</button>
+           <Button
+        onClick={open}
+        className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-black/30"
+      >
+        Delete
+      </Button>
         </th>
       </tr>
 
-      {/* Open the modal using document.getElementById('ID').showModal() method */}
 
 
             {/* headless ui dialogue */}
-            {/* <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
+            <Dialog open={isOpen} as="div" className="relative z-10 focus:outline-none" onClose={close}>
         <div className="fixed  inset-0 z-10 w-screen overflow-y-auto">
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
@@ -83,27 +122,31 @@ const MySingleProduct = ({product, handleDeleteProduct, handleEditProduct }) => 
               className="w-full max-w-md rounded-xl  p-6  bg-black duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
             >
               <DialogTitle as="h3" className="text-base/7 font-medium text-white">
-                Edit Your Product
+              Are You Sure You want to delete '{name}'?
               </DialogTitle>
               <p className="mt-2 text-sm/6 text-white/50">
-                Your payment has been successfully submitted. We’ve sent you an email with all of the details of your
-                order.
+              once you delete
+               You can not revert this.
               </p>
 
 
 
-              <div className="mt-4">
+              <div className="mt-4 flex gap-3">
                 <Button
                   className="inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700"
-                  onClick={close}
+                //   onClick={close}
+                onClick={()=>handleDeleteProduct(_id)}
+                  
                 >
-                  Got it, thanks!
+                  Delete
                 </Button>
+
+                <button className="inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700"  onClick={close}>Cancel</button>
               </div>
             </DialogPanel>
           </div>
         </div>
-      </Dialog> */}
+      </Dialog>
         </>
     );
 };

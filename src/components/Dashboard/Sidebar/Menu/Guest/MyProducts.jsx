@@ -1,10 +1,10 @@
 
 //here all the products will be seen
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
-import SingleProduct from '../../../../Home/Products/SingleProduct';
 import MySingleProduct from './MySingleProduct';
+import toast from 'react-hot-toast';
 
 const Products = () => {
 
@@ -12,7 +12,7 @@ const Products = () => {
 
     const axiosSecure=useAxiosSecure()
 
-    const{data: products=[], isLoading }=useQuery({
+    const{data: products=[], refetch, isLoading }=useQuery({
         queryKey:['my-products', user?.email],
         queryFn:async()=>{
             if(!user?.email){
@@ -30,18 +30,10 @@ const Products = () => {
         
     })
 
-    //delete a single product
-    const handleDeleteProduct=(id)=>{
-        console.log('delete', id);
-        
 
-    }
 
-    const handleEditProduct=(id)=>{
-        console.log('edit-->', id);
-        
-
-    }
+  
+    
 
     if (isLoading) return <p>Loading...</p>;
 
@@ -77,7 +69,7 @@ const Products = () => {
     <tbody>
       {/* row 1 */}
       {
-        products.map(product=>  <MySingleProduct key={product._id} product={product} handleDeleteProduct={handleDeleteProduct} handleEditProduct={handleEditProduct}/>)
+        products.map(product=>  <MySingleProduct key={product._id} product={product} refetch={refetch}/>)
       }
 
     
