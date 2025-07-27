@@ -94,6 +94,7 @@ const{mutateAsync}=useMutation({
         const creator_email = form.creator_email.value;
         const avatar = form.avatar.value;
         const formattedTags = tags.map(tag => tag.text);
+        const status='pending'
 
         
     const formData = new FormData();
@@ -104,6 +105,7 @@ const{mutateAsync}=useMutation({
     formData.append('creator_name', creator_name);
     formData.append('creator_email', creator_email);
     formData.append('avatar', avatar);
+    formData.append('status', status)
 
     formattedTags.forEach((tag, index) => {
       formData.append(`tags[${index}]`, tag);
@@ -143,6 +145,7 @@ const{mutateAsync}=useMutation({
         creator_name,
         creator_email,
         avatar,
+        status,
         tags: formattedTags,
       };
 

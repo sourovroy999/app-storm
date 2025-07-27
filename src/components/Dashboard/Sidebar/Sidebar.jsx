@@ -23,9 +23,11 @@ const Sidebar = () => {
 
 
   const [role, isLoading]=useRole();
+  if (isLoading) {
+  return <p className="text-center p-4">Loading...</p>;
+}
   console.log(role, isLoading);
 
-  {isLoading &&  <p>Loading...</p>}
   
   // const [toggle, setToggle]=useState(true)
 
@@ -52,10 +54,11 @@ const Sidebar = () => {
         <>
         {/* small screenn navabr */}
         <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+          
             <div>
                   <div className='block cursor-pointer p-4 font-bold'>
             <Link to='/'>
-            <p >AppStorm</p>
+            AppStorm
 
             </Link>
           </div>
@@ -82,7 +85,7 @@ const Sidebar = () => {
             <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center -auto'>
             
 
-              <p className='text-2xl text-black font-bold'>AppStorm</p>
+              <Link to={'/'} className='text-2xl text-black font-bold'>AppStorm</Link>
             </div>
           </div>
 
