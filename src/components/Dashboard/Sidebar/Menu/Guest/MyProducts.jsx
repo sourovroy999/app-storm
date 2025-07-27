@@ -30,6 +30,19 @@ const Products = () => {
         
     })
 
+    //delete a single product
+    const handleDeleteProduct=(id)=>{
+        console.log('delete', id);
+        
+
+    }
+
+    const handleEditProduct=(id)=>{
+        console.log('edit-->', id);
+        
+
+    }
+
     if (isLoading) return <p>Loading...</p>;
 
     console.log(products);
@@ -58,13 +71,13 @@ const Products = () => {
         <th>Product Name</th>
         <th>Tagline</th>
         <th>Status</th>
-        <th></th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       {/* row 1 */}
       {
-        products.map(product=>  <MySingleProduct key={product._id} product={product}/>)
+        products.map(product=>  <MySingleProduct key={product._id} product={product} handleDeleteProduct={handleDeleteProduct} handleEditProduct={handleEditProduct}/>)
       }
 
     

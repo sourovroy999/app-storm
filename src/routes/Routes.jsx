@@ -14,6 +14,7 @@ import ReportedContent from "../components/Dashboard/Sidebar/Menu/Moderator/Repo
 import ManageCoupons from "../components/Dashboard/Sidebar/Menu/Admin/ManageCoupons"
 import ManageUsers from "../components/Dashboard/Sidebar/Menu/Admin/ManageUsers"
 import StatisticsPage from "../components/Dashboard/Sidebar/Menu/Admin/StatisticsPage"
+import UpdateProduct from "../components/Dashboard/Sidebar/Menu/Guest/UpdateProduct"
 
 
 export const router = createBrowserRouter([
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
             {
                 path:'statistics',
                 element:<StatisticsPage/>
+            },
+            {
+                path:'my-products/update/:id',
+                element:<UpdateProduct/>
             }
              
         ]
