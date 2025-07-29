@@ -4,7 +4,6 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import MySingleProduct from './MySingleProduct';
-import toast from 'react-hot-toast';
 
 const Products = () => {
 
@@ -50,9 +49,7 @@ const Products = () => {
 
                 <ul className="list bg-base-100 rounded-box shadow-md ">
 
-                    {/* <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Most recent product of this week</li> */}
-
-                {/* table start */}
+                   
 
                 <div className="overflow-x-auto">
   <table className="table">

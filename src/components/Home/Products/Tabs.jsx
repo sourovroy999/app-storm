@@ -6,14 +6,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import '../../../styles/swipper-custom.css'
-import { useState } from 'react';
+import {  useState } from 'react';
 
 
 import { Description, Field, Label, Textarea } from '@headlessui/react'
 import clsx from 'clsx'
 
 
-const Example = ({ product }) => {
+const Example = ({ product })=> {
   const categories = ['Overview', 'Reviews', 'Team'];
 console.log(product);
 
@@ -25,7 +25,7 @@ const {screenshots} =product;
   const closeModal = () => setModalImage(null);
 
   return (
-    <div className="w-full max-w-4xl  py-6">
+    <div className="w-full max-w-4xl  pt-6">
       <TabGroup>
         <TabList className="flex gap-4 pb-4">
           {categories.map((name) => (
