@@ -1,8 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
-import MySingleProduct from "../Guest/MySingleProduct";
 import PendingSingleProduct from "./PendingSingleProduct";
-
 
 const ProductReviewQueue = () => {
     const axiosSecure=useAxiosSecure()
@@ -21,6 +19,15 @@ const ProductReviewQueue = () => {
 
     })
 
+    const { data: counts } = useQuery({
+  queryKey: ['productStatusCounts'],
+  queryFn: async () => {
+    const res = await axiosSecure.get('/product-status-counts');
+    return res.data;
+  }
+});
+
+
     if(isLoading){
         return <p>Loading queue...</p>
 }
@@ -33,13 +40,33 @@ console.log(pendingProducts);
 
     return (
         <div>
-            <p className="text-center">
-
-            ProductReviewQueue :{pendingProducts.length}
-            </p>
+          
             <div className="">
             <div className="text-3xl font-bold my-4 text-center">
                 Pending Products for Review
+            </div>
+
+              <div className="flex justify-around my-4">
+                <p>
+
+            Pending Product :{counts.pending}
+                </p>
+                <p>
+            Approved Product :{counts.approved}
+
+                </p>
+
+                <p>
+            Featured Product :{counts.featured}
+
+                </p>
+
+                <p>
+            Rejected Product:{counts.rejected}
+
+                </p>
+
+
             </div>
 
             <div>

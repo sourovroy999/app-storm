@@ -12,9 +12,13 @@ import { createPortal } from 'react-dom';
 
 const PendingSingleProduct = ({product, refetch }) => {
 
+  // console.log(product);
+  
+
     const axiosSecure=useAxiosSecure()
     
     let [isOpen, setIsOpen] = useState(false)
+         const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   function open() {
     setIsOpen(true)
@@ -24,32 +28,42 @@ const PendingSingleProduct = ({product, refetch }) => {
     setIsOpen(false)
   }
 
+   // Delete modal functions  
+    function openDeleteModal(){
+        setIsDeleteModalOpen(true)
+    }
     
-    // const {mutateAsync}=useMutation({
-    //     mutationFn:async id=>{
-    //         const {data}=await axiosSecure.delete(`products/delete/${id}`)
-    //         return data;
-    //     },
-    //     onSuccess:async (data)=>{
-    //         console.log(data);
-    //         refetch()
-    //         close()
-    //         toast.success('Product Deleted')
-    //     }
+    function closeDeleteModal(){
+        setIsDeleteModalOpen(false)
+    }
 
-    // })
 
-      //delete a single product
-    // const handleDeleteProduct=async(id)=>{
-    //     console.log('delete', id);
-    //     try {
-    //         await mutateAsync(id)
-    //     } catch (error) {
-    //         console.log(error);
+    
+    const {mutateAsync}=useMutation({
+        mutationFn:async id=>{
+            const {data}=await axiosSecure.delete(`products/delete/${id}`)
+            return data;
+        },
+        onSuccess:async (data)=>{
+            console.log(data);
+            refetch()
+            close()
+            toast.success('Product Deleted')
+        }
+
+    })
+
+      // delete a single product
+    const handleDeleteProduct=async(id)=>{
+        console.log('delete', id);
+        try {
+            await mutateAsync(id)
+        } catch (error) {
+            console.log(error);
             
             
-    //     }
-    // }
+        }
+    }
 
 
       const [modalImage, setModalImage] = useState(null);
@@ -75,19 +89,23 @@ const PendingSingleProduct = ({product, refetch }) => {
     creator_email
 } = product;
 
-const handleApprove=async(id)=>{
-    try {
-        await axiosSecure.patch(`/product/status/${id}`, {status:'approved'})
-        toast.success('Approved')
-        refetch(); // Add refetch here to update the UI after approval
-    } catch (error) {
-        //
-        console.log(error);
-        toast.error('Failed to approve product.'); // Provide user feedback
-        
-    }
+const updateStatus = async (id, newStatus, successMessage) => {
+  try {
+    await axiosSecure.patch(`/product/status/${id}`, { status: newStatus });
+    toast.success(successMessage);
+    close();
+    refetch();
+  } catch (error) {
+    console.error(error);
+    toast.error(`Failed to update status to "${newStatus}".`);
+  }
+};
 
-}
+
+const handleApprove = (id) => updateStatus(id, 'approved', 'Approved');
+const handleReject = (id) => updateStatus(id, 'rejected', 'Rejected');
+const handleMakeFeatured = (id) => updateStatus(id, 'featured', 'Added to featured list');
+const handleRemoveFeatured = (id) => updateStatus(id, 'approved', 'Removed from featured list'); // assuming 'approved' is default
 
     return (
         <>
@@ -130,6 +148,7 @@ const handleApprove=async(id)=>{
 
 
             <Button
+             onClick={openDeleteModal}
         
         className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-black/30"
       >
@@ -232,11 +251,43 @@ const handleApprove=async(id)=>{
                 
 
                     
-                <div className='flex justify-center my-4 mt-6 gap-6'>
-                    <button onClick={()=>handleApprove(_id)} className="btn bg-green-500">Approve</button>
-                    <button className="btn btn-error text-white">Reject</button>
+<div className='flex justify-center my-4 mt-6 gap-6'>
+  <button
+    disabled={status === 'approved'}
+    onClick={() => handleApprove(_id)}
+    className="btn bg-green-500"
+  >
+    Approve
+  </button>
 
-                </div>
+  <button
+    disabled={status === 'rejected'}
+    onClick={() => handleReject(_id)}
+    className="btn btn-error text-white"
+  >
+    Reject
+  </button>
+
+  {/* Toggle Featured / Unfeatured */}
+  {status === 'featured' ? (
+    <button
+     disabled={status === 'rejected'}
+      onClick={() => handleRemoveFeatured(_id)}
+      className="btn bg-yellow-500 text-white"
+    >
+      Remove from Featured
+    </button>
+  ) : (
+    <button
+     disabled={status === 'rejected'}
+      onClick={() => handleMakeFeatured(_id)}
+      className="btn bg-purple-600 text-white"
+    >
+      Make Featured
+    </button>
+  )}
+</div>
+
 
 
             </div>
@@ -253,6 +304,43 @@ const handleApprove=async(id)=>{
       </Dialog>,
       document.body
         )}
+
+
+           {/* delete modal */}
+       {/* headless ui dialogue */}
+            <Dialog open={isDeleteModalOpen} onClose={closeDeleteModal} as="div" className="relative z-10 focus:outline-none" >
+        <div className="fixed  inset-0 z-10 w-screen overflow-y-auto">
+          <div className="flex min-h-full items-center justify-center p-4">
+            <DialogPanel
+              transition
+              className="w-full max-w-md rounded-xl  p-6  bg-black duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
+            >
+              <DialogTitle as="h3" className="text-base/7 font-medium text-white">
+              Are You Sure You want to delete '{name}'?
+              </DialogTitle>
+              <p className="mt-2 text-sm/6 text-white/50">
+              once you delete
+               You can not revert this.
+              </p>
+
+
+
+              <div className="mt-4 flex gap-3">
+                <Button
+                  className="inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700"
+                //   onClick={close}
+                onClick={()=>handleDeleteProduct(_id)}
+                  
+                >
+                  Delete
+                </Button>
+
+                <button className="inline-flex items-center gap-2 rounded-md bg-gray-700 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline data-focus:outline-white data-hover:bg-gray-600 data-open:bg-gray-700"  onClick={closeDeleteModal}>Cancel</button>
+              </div>
+            </DialogPanel>
+          </div>
+        </div>
+      </Dialog>
         </>
     );
 };
