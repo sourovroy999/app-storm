@@ -33,6 +33,8 @@ const ProductReviewQueue = () => {
 }
 
 console.log(pendingProducts);
+console.log(counts);
+
 
   
 
@@ -46,7 +48,7 @@ console.log(pendingProducts);
                 Pending Products for Review
             </div>
 
-              <div className="flex justify-around my-4">
+              <div className="flex flex-col gap-2  my-4">
                 <p>
 
             Pending Product :{counts.pending}

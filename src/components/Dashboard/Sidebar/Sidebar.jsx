@@ -23,9 +23,9 @@ const Sidebar = () => {
 
 
   const [role, isLoading]=useRole();
-  if (isLoading) {
-  return <p className="text-center p-4">Loading...</p>;
-}
+//   if (isLoading) {
+//   return <p className="text-center p-4">Loading...</p>;
+// }
   console.log(role, isLoading);
 
   
@@ -91,10 +91,6 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           <div className='flex flex-col justify-between flex-1 mt-6'>
-            {/* Conditional toggle button here.. */}
-            {/* {
-              role === 'host' && <ToggleBtn toggleHandler={toggleHandler} toggle={toggle}/>
-            } */}
             
 
             {/*  Menu Items */}
@@ -117,13 +113,9 @@ const Sidebar = () => {
               }
 
 
-              
+        
 
-
-              {/* host menu */}
-              {/* {role === 'guest' && <GuestMenu/>}
-              {role === 'host' ? toggle ? <HostMenu/>: <GuestMenu/> : undefined}
-              {role === 'admin' && <AdminMenu/>} */}
+            
 
 
             </nav>

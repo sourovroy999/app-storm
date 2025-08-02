@@ -68,9 +68,10 @@ const LoginPage = () => {
             className="w-full h-auto  object-cover "
           />
         </div>
+        {/* bg-[#eaa60817] */}
 
         {/* Right Side: Login Form - Takes full width on small screens, half width from medium screens */}
-        <div className="w-full bg-[#eaa60817]  md:w-1/2 p-8 flex flex-col justify-center">
+        <div className="w-full   md:w-1/2 p-8 flex flex-col justify-center">
         <Link to={'/'} className='btn max-w-fit mx-auto'>Home</Link>
           <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">Welcome Back!</h2>
           <p className="text-gray-600 text-center mb-8">Sign in to continue to your account.</p>

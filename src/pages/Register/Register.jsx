@@ -97,7 +97,7 @@ const Register = () => {
         </div>
 
         {/* Right Side: Login Form - Takes full width on small screens, half width from medium screens */}
-        <div className="w-full bg-[#eaa60817]  md:w-1/2 p-8 flex flex-col justify-center">
+        <div className="w-full   md:w-1/2 p-8 flex flex-col justify-center">
           <h2 className="text-3xl font-bold text-gray-800 mb-2 text-center">Sign Up!</h2>
           <p className="text-gray-600 text-center mb-8">Sign up to see exciting products.</p>
 

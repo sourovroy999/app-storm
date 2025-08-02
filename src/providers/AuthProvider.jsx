@@ -50,22 +50,33 @@ const AuthProvider = ({ children }) => {
     return signOut(auth)
   }
 
-  const updateUserProfile =async (name, photo) => {  
+const updateUserProfile = async (name, photo) => {  
+  try {
+    // Update Firebase profile
     await updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
-    })
+    });
 
-    setUser({
+    // Create updated user object
+    const updatedUser = {
       ...auth.currentUser,
-      displayName:name,
-      photoURL:photo
-    })
+      displayName: name,
+      photoURL: photo
+    };
 
-    return true
+    // Update local state
+    setUser(updatedUser);
 
-   
+    // Save updated user to database
+    await saveUser(updatedUser);
+
+    return true;
+  } catch (error) {
+    console.error('Error updating profile:', error);
+    throw error;
   }
+}
   // Get token from server
   const getToken = async email => {
     const { data } = await axios.post(
@@ -76,17 +87,30 @@ const AuthProvider = ({ children }) => {
     return data
   }
 
-  const saveUser=async user=>{
-
-    const currentUser={
-      email:user?.email,
-      role:'guest',
-      status:'Verified',
-    }
-
-    const {data}=await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser)
-    return data
+ const saveUser = async user => {
+  // Don't save if essential data is missing
+  if (!user?.email) {
+    console.log('No email found, skipping user save');
+    return;
   }
+
+  const currentUser = {
+    email: user.email,
+    name: user.displayName || 'Unknown User', // Handle null displayName
+    photoURL: user.photoURL || '', // Handle null photoURL
+    role: 'guest',
+    status: 'Verified',
+  }
+
+  console.log('Saving user data:', currentUser);
+
+  try {
+    const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/user`, currentUser);
+    return data;
+  } catch (error) {
+    console.error('Error saving user:', error);
+  }
+}
 
   
 
