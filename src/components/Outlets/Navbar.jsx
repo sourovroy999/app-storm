@@ -138,7 +138,7 @@ const Navbar = () => {
       <div className=''>
       <ul
         tabIndex={0}
-        className="menu menu-sm bg-red-400 dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow">
+        className="menu menu-sm bg-base-200 dropdown-content  rounded-box z-1 mt-3 w-52 p-2 shadow">
         <p className='text-center text-xl py-1'>
           <a className="justify-between">
             {user?.displayName}

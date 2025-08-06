@@ -233,7 +233,7 @@ const { ProductDetails, productId, reports } = reportedProduct || {};
               
               <div className="flex justify-center">
                  
-                    <button onClick={close} className="btn w-sm">CLose</button>
+                    <button onClick={closeReportModal} className="btn w-sm">CLose</button>
               
                 
               </div>

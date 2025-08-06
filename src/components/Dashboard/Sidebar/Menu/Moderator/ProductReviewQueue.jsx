@@ -19,16 +19,16 @@ const ProductReviewQueue = () => {
 
     })
 
-    const { data: counts } = useQuery({
+    const { data: counts , isLoading:isGettingCount} = useQuery({
   queryKey: ['productStatusCounts'],
   queryFn: async () => {
     const res = await axiosSecure.get('/product-status-counts');
     return res.data;
   }
-});
+   });
 
 
-    if(isLoading){
+    if(isLoading || isGettingCount){
         return <p>Loading queue...</p>
 }
 

@@ -164,7 +164,7 @@ const handleRemoveFeatured = (id) => updateStatus(id, 'approved', 'Removed from 
           <div className="flex min-h-full items-center justify-center p-4">
             <DialogPanel
               transition
-              className="w-full max-w-xl rounded-xl  p-6  bg-black duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
+              className="w-full max-w-xl rounded-xl  p-6 backdrop-blur-2xl bg-base-300 duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
             >
               <DialogTitle as="h3" className="text-base/7 font-medium text-white">
               Details of '{name}'
