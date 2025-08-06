@@ -6,6 +6,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import useUpvote from "../../../hooks/useUpvote";
 
 
 const SingleFeaturedProduct = ({ product , refetch}) => {
@@ -27,31 +28,33 @@ const SingleFeaturedProduct = ({ product , refetch}) => {
     comments = []
   } = product;
 
-  const {mutateAsync:upvoteProduct, isPending}=useMutation({
+//   const {mutateAsync:upvoteProduct, isPending}=useMutation({
 
-mutationFn: async(productId)=>{
-  console.log(productId);
+// mutationFn: async(productId)=>{
+//   console.log(productId);
   
-  const {data}=await axiosSecure.patch(`upvote-product/${productId}`, {
-    user_email:user.email,
-    user_name: user.displayName
-  });
-  return data
+//   const {data}=await axiosSecure.patch(`upvote-product/${productId}`, {
+//     user_email:user.email,
+//     user_name: user.displayName
+//   });
+//   return data
 
-},
+// },
 
-onSuccess: ()=>{
-  refetch()
-  toast.success('upvoted successfully')
+// onSuccess: ()=>{
+//   refetch()
+//   toast.success('upvoted successfully')
 
-},
-    onError: (error) => {
-      console.error('Upvote error:', error);
-      toast.error(error.response?.data?.message || 'Failed to upvote');
-    }
+// },
+//     onError: (error) => {
+//       console.error('Upvote error:', error);
+//       toast.error(error.response?.data?.message || 'Failed to upvote');
+//     }
 
-  })
+//   })
 
+
+const{upvoteProduct, isUpvoting}=useUpvote(refetch)
 
   const handleUpvote=async()=>{
     // console.log();
