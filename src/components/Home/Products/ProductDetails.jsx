@@ -2,14 +2,13 @@ import { useParams } from "react-router";
 import useAxiosCommon from "../../../hooks/useAxiosCommon";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import Container from "../../shared/Container";
-import CustomTabs from "./Tabs";
-import Example from "./Tabs";
 import useAuth from "../../../hooks/useAuth";
 import { useState } from "react";
 
 import { Button, Dialog, DialogPanel, DialogTitle } from '@headlessui/react'
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Tabs from "./Tabs";
 
 
 
@@ -176,7 +175,7 @@ const handleReportContent=async (e)=>{
 
                 <div>
             
-            <Example product={product}/>
+            <Tabs product={product}/>
                 </div>
 
                    

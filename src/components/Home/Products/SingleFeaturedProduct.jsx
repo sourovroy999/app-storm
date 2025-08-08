@@ -3,17 +3,14 @@ import { Link } from "react-router"; // Use 'react-router-dom' for correct behav
 
 import { BiSolidUpvote } from "react-icons/bi";
 import useAuth from "../../../hooks/useAuth";
-import { useMutation } from "@tanstack/react-query";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import toast from "react-hot-toast";
 import useUpvote from "../../../hooks/useUpvote";
+import useUpvoteStatus from "../../../hooks/useUpvoteStatus";
 
 
 const SingleFeaturedProduct = ({ product , refetch}) => {
 
   const{user}=useAuth()
 
-  const axiosSecure=useAxiosSecure()
 
   const {
     _id,
@@ -24,46 +21,26 @@ const SingleFeaturedProduct = ({ product , refetch}) => {
     creator_email,
     thumbnail,
     tags = [],
-    vote_count,
-    comments = []
   } = product;
 
-//   const {mutateAsync:upvoteProduct, isPending}=useMutation({
-
-// mutationFn: async(productId)=>{
-//   console.log(productId);
-  
-//   const {data}=await axiosSecure.patch(`upvote-product/${productId}`, {
-//     user_email:user.email,
-//     user_name: user.displayName
-//   });
-//   return data
-
-// },
-
-// onSuccess: ()=>{
-//   refetch()
-//   toast.success('upvoted successfully')
-
-// },
-//     onError: (error) => {
-//       console.error('Upvote error:', error);
-//       toast.error(error.response?.data?.message || 'Failed to upvote');
-//     }
-
-//   })
 
 
 const{upvoteProduct, isUpvoting}=useUpvote(refetch)
 
+
+
+
+const {data,isloading}=useUpvoteStatus(_id)
+
+
   const handleUpvote=async()=>{
-    // console.log();
+
     try {
-      //
+
       await upvoteProduct(_id)
       
     } catch (error) {
-      //
+
        console.error('Error handling upvote:', error);
     }
 
@@ -107,9 +84,9 @@ const{upvoteProduct, isUpvoting}=useUpvote(refetch)
         <p className="text-sm  line-clamp-3">{description}</p>
 
         {/* Bottom actions */}
-        <div className="flex items-center justify-between mt-auto pt-2 text-sm text-gray-500">
-          <button disabled={user?.email === creator_email} onClick={()=>handleUpvote(_id)} className="flex btn items-center gap-2">
-            <BiSolidUpvote /> Upvote {vote_count}
+        <div className="flex items-center justify-between mt-auto pt-2 text-sm  text-gray-500">
+          <button disabled={user?.email === creator_email} onClick={()=>handleUpvote(_id)} className={`flex btn items-center gap-2 ${data?.hasUpvoted ? 'bg-blue-400 text-white': ''}`}>
+            <BiSolidUpvote /> {data?.hasUpvoted ?  'Upvoted' : 'Upvote'} {data?.totalUpvotes}
 
           </button> 
 

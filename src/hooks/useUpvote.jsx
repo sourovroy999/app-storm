@@ -1,43 +1,52 @@
-import React from 'react';
 import useAxiosSecure from './useAxiosSecure';
 import useAuth from './useAuth';
 import toast from 'react-hot-toast';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-const useUpvote = (refetch) => {
+const useUpvote = (refetch, productId = null) => {
+    const axiosSecure = useAxiosSecure();
+    const { user } = useAuth();
+    const queryClient = useQueryClient();
 
-    const axiosSecure=useAxiosSecure()
+    const { mutateAsync: upvoteProduct, isPending: isUpvoting } = useMutation({
+        mutationFn: async (productId) => {
+            console.log(productId);
+            
+            const { data } = await axiosSecure.patch(`upvote-product/${productId}`, {
+                user_email: user.email,
+                user_name: user.displayName
+            });
+            return data;
+        },
 
-    const {user}=useAuth()
+        onSuccess: (data, variables) => {
+            // Call the original refetch
+            if (refetch) refetch();
+            
+            // Invalidate specific queries for this product
+            queryClient.invalidateQueries({
+                queryKey: ['upvoteStatus', variables] // variables contains the productId
+            });
+            
+            queryClient.invalidateQueries({
+                queryKey: ['totalUpvotes', variables]
+            });
+            
+            // Optionally invalidate all upvote-related queries
+            queryClient.invalidateQueries({
+                queryKey: ['upvoteStatus']
+            });
 
-    const {mutateAsync:upvoteProduct, isPending:isUpvoting}=useMutation({
+            toast.success(data.message || 'Action successful');
+        },
 
-mutationFn: async(productId)=>{
-  console.log(productId);
-  
-  const {data}=await axiosSecure.patch(`upvote-product/${productId}`, {
-    user_email:user.email,
-    user_name: user.displayName
-  });
-  return data
+        onError: (error) => {
+            console.error('Upvote error:', error);
+            toast.error(error.response?.data?.message || 'Failed to upvote');
+        }
+    });
 
-},
-
-onSuccess: ()=>{
-  refetch()
-  toast.success('upvoted successfully')
-
-},
-    onError: (error) => {
-      console.error('Upvote error:', error);
-      toast.error(error.response?.data?.message || 'Failed to upvote');
-    }
-
-  })
-
-
-
-    return {upvoteProduct, isUpvoting}
+    return { upvoteProduct, isUpvoting };
 };
 
 export default useUpvote;

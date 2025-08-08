@@ -1,4 +1,3 @@
-import React from 'react';
 import useAxiosCommon from '../../../hooks/useAxiosCommon';
 import { useQuery } from '@tanstack/react-query';
 import SingleFeaturedProduct from './SingleFeaturedProduct';

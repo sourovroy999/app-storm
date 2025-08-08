@@ -8,20 +8,16 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import '../../../styles/swipper-custom.css'
 
-import { useRef, useState, useEffect } from 'react';
+import {  useState } from 'react';
 import { Field, Textarea } from '@headlessui/react'
 import clsx from 'clsx'
 import useAddComment from '../../../hooks/useAddComment';
 import useComments from '../../../hooks/useComments';
 import Comments from '../Comments/Comments';
 
-const Example = ({ product }) => {
+const Tabs = ({ product }) => {
     console.log(product);
 
-    const [newCommentId, setNewCommentId] = useState(null);
-    
-    // ✅ Changed to use an object to store refs for all comments
-    const commentRefs = useRef({});
 
     const {_id: productId} = product;
     
@@ -168,4 +164,4 @@ const Example = ({ product }) => {
     );
 };
 
-export default Example;
+export default Tabs;
