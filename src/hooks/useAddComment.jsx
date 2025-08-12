@@ -2,6 +2,8 @@ import React from 'react';
 import useAxiosSecure from './useAxiosSecure';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import useAuth from './useAuth';
+import { Rating } from 'react-simple-star-rating';
+
 
 const useAddComment = () => {
     

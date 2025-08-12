@@ -16,7 +16,9 @@ const useUpvoteStatus = (productId) => {
 
       return data; // { totalUpvotes, hasUpvoted }
     },
-    enabled: !!productId && !!user?.email
+    enabled: !!productId && !!user?.email,
+    staleTime: 0,
+    cacheTime: 5 * 60 * 1000,
   });
 };
 

@@ -5,7 +5,7 @@ const Comments = ({comment}) => {
 
 
 
-    console.log(comment);
+    // console.log(comment);
     const {
         userName,
         userPhoto,

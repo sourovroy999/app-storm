@@ -14,15 +14,17 @@ import clsx from 'clsx'
 import useAddComment from '../../../hooks/useAddComment';
 import useComments from '../../../hooks/useComments';
 import Comments from '../Comments/Comments';
+import ReviewForm from '../Reviews/ReviewForm';
+import ProductReviews from '../Reviews/ProductReviews';
 
 const Tabs = ({ product }) => {
-    console.log(product);
+    // console.log(product);
 
 
     const {_id: productId} = product;
     
     const categories = ['Overview', 'Reviews', 'Team'];
-    console.log(product);
+    // console.log(product);
 
     const {screenshots} = product;
 
@@ -34,7 +36,7 @@ const Tabs = ({ product }) => {
     const {data: comments = [], isLoading} = useComments(productId)
     const {mutateAsync, isPending} = useAddComment()
 
-    console.log(comments);
+    // console.log(comments);
     
   
     const handleCommentSubmit = async (e) => {
@@ -132,9 +134,14 @@ const Tabs = ({ product }) => {
                             <button className="btn my-2">{isPending ? 'Commenting..' : 'Comment'}</button>
                         </form>
                     </TabPanel>
+
+                    {/* reviews tab panel */}
                     
                     <TabPanel>
                         <p className="text-gray-700">Reviews go here.</p>
+                        <ProductReviews productId={productId}/>
+                        <ReviewForm productId={productId} />
+
                     </TabPanel>
                     <TabPanel>
                         <p className="text-gray-700">Team members listed here.</p>

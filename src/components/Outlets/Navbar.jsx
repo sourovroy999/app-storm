@@ -76,9 +76,9 @@ const Navbar = () => {
   }
   // console.log(user.photoURL);
   const links=<>
-       <li><a>Home</a></li>
+       <li><Link to={'/'}>Home</Link></li>
     
-        <li><a>Products</a></li>
+        <li><Link to={'/products'}>Products</Link></li>
   
   </>
 

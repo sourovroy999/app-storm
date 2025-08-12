@@ -13,6 +13,7 @@ import {
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
 import axios from 'axios'
+import { reload } from 'firebase/auth'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -50,25 +51,53 @@ const AuthProvider = ({ children }) => {
     return signOut(auth)
   }
 
+// const updateUserProfile = async (name, photo) => {  
+//   try {
+//     // Update Firebase profile
+//     await updateProfile(auth.currentUser, {
+//       displayName: name,
+//       photoURL: photo,
+//     });
+
+//     // Create updated user object
+//     const updatedUser = {
+//       ...auth.currentUser,
+//       displayName: name,
+//       photoURL: photo
+//     };
+
+//     // Update local state
+//     setUser(updatedUser);
+
+//     // Save updated user to database
+//     await saveUser(updatedUser);
+
+//     return true;
+//   } catch (error) {
+//     console.error('Error updating profile:', error);
+//     throw error;
+//   }
+// }
+
+
+
 const updateUserProfile = async (name, photo) => {  
   try {
-    // Update Firebase profile
     await updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
     });
 
-    // Create updated user object
+    // Force refresh from Firebase server
+    await reload(auth.currentUser);
+
     const updatedUser = {
       ...auth.currentUser,
-      displayName: name,
-      photoURL: photo
+      displayName: auth.currentUser.displayName,
+      photoURL: auth.currentUser.photoURL
     };
 
-    // Update local state
     setUser(updatedUser);
-
-    // Save updated user to database
     await saveUser(updatedUser);
 
     return true;
@@ -76,7 +105,9 @@ const updateUserProfile = async (name, photo) => {
     console.error('Error updating profile:', error);
     throw error;
   }
-}
+};
+
+
   // Get token from server
   const getToken = async email => {
     const { data } = await axios.post(
@@ -89,15 +120,17 @@ const updateUserProfile = async (name, photo) => {
 
  const saveUser = async user => {
   // Don't save if essential data is missing
+  console.log(user);
+  
   if (!user?.email) {
     console.log('No email found, skipping user save');
     return;
   }
 
   const currentUser = {
-    email: user.email,
-    name: user.displayName || 'Unknown User', // Handle null displayName
-    photoURL: user.photoURL || '', // Handle null photoURL
+    email: user?.email,
+    name: user?.displayName || 'Unknown User', // Handle null displayName
+    photoURL: user?.photoURL || '', // Handle null photoURL
     role: 'guest',
     status: 'Verified',
   }

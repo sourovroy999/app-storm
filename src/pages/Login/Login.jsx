@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import loginImg from '../../assets/Login-rafiki.png'
-import { Link, useNavigate } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import useAuth from '../../hooks/useAuth';
 import toast from 'react-hot-toast';
 
@@ -9,7 +9,10 @@ import toast from 'react-hot-toast';
 const LoginPage = () => {
 
   const{signIn,setLoading,signInWithGoogle}=useAuth()
+  const { state } = useLocation();
+
   const navigate=useNavigate()
+  const fromUpvote=state?.fromUpvote
   
   const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
@@ -25,7 +28,12 @@ const LoginPage = () => {
     try {
       setLoading(true)
       await signIn(email,password)
-      navigate('/')
+
+      if(fromUpvote){
+        navigate(`/?upvote=${fromUpvote}`, {state:{shouldUpvote: true}})
+      }else{
+        navigate('/')
+      }
       toast.success('Login Successfull')
 
     } catch (err) {

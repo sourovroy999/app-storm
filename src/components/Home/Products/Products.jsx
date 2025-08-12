@@ -31,14 +31,14 @@ const Products = () => {
     return (
         <div className="md:ml-20">
             <div className="text-3xl font-bold my-4">
-                Top Products Launching Today
+                All products
             </div>
 
             <div>
 
                 <ul className="list bg-base-100 rounded-box shadow-md max-w-xl">
 
-                    <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Most recent product of this week</li>
+                    {/* <li className="p-4 pb-2 text-xs opacity-60 tracking-wide">Most recent product of this week</li> */}
 
 
                     {

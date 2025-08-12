@@ -12,9 +12,10 @@ const Banner = () => {
     return (
         <div className='my-4'>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper h-[480px] ">
-        <SwiperSlide ><img className='object-cover w-full h-full' src="https://i.ibb.co/YFvPPLX1/drinks.jpg" alt="" /></SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide ><img className='object-cover w-full h-full' src="https://i.ibb.co.com/F4DVBzFC/abstract-connected-dots.jpg" alt="" /></SwiperSlide>
+        <SwiperSlide ><img className='object-cover w-full h-full' src="https://i.ibb.co.com/F4DVBzFC/abstract-connected-dots.jpg" alt="" /></SwiperSlide>
+        <SwiperSlide ><img className='object-cover w-full h-full' src="https://i.ibb.co.com/F4DVBzFC/abstract-connected-dots.jpg" alt="" /></SwiperSlide>
+       
          
       </Swiper>
             

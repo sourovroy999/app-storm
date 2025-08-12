@@ -15,6 +15,7 @@ import ManageCoupons from "../components/Dashboard/Sidebar/Menu/Admin/ManageCoup
 import ManageUsers from "../components/Dashboard/Sidebar/Menu/Admin/ManageUsers"
 import StatisticsPage from "../components/Dashboard/Sidebar/Menu/Admin/StatisticsPage"
 import UpdateProduct from "../components/Dashboard/Sidebar/Menu/Guest/UpdateProduct"
+import Products from "../components/Home/Products/Products"
 
 
 export const router = createBrowserRouter([
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
             {
                 path: '/products/:id',
                 element: <ProductDetails />
+            },
+            {
+                path:'/products',
+                element:<Products/>
             }
         ]
     },
