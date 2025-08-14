@@ -99,6 +99,10 @@ export const router = createBrowserRouter([
     {
         path: '/register',
         element: <Register />
+    },
+    {
+        path:'/cancel',
+        element:<p>calceled</p>
     }
 
 
