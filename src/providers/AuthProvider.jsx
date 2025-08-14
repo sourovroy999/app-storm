@@ -132,7 +132,7 @@ const updateUserProfile = async (name, photo) => {
     name: user?.displayName || 'Unknown User', // Handle null displayName
     photoURL: user?.photoURL || '', // Handle null photoURL
     role: 'guest',
-    status: 'Verified',
+    status: 'unverified',
   }
 
   console.log('Saving user data:', currentUser);
