@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router"
+import { createBrowserRouter, Navigate } from "react-router"
 import MainLayout from "../layouts/MainLayout"
 import Home from "../pages/Home/Home"
 import Login from "../pages/Login/Login"
@@ -16,6 +16,9 @@ import ManageUsers from "../components/Dashboard/Sidebar/Menu/Admin/ManageUsers"
 import StatisticsPage from "../components/Dashboard/Sidebar/Menu/Admin/StatisticsPage"
 import UpdateProduct from "../components/Dashboard/Sidebar/Menu/Guest/UpdateProduct"
 import Products from "../components/Home/Products/Products"
+import DashboardIndex from "./DashboardIndex"
+
+
 
 
 export const router = createBrowserRouter([
@@ -43,6 +46,12 @@ export const router = createBrowserRouter([
         element: <DashBoardLayout/>,
         children:[
             {
+                index:true,
+                element: <DashboardIndex/>
+
+            },
+            {
+             
                 path:'/dashboard/my-profile',
                 element:<MyProfile/>
 
@@ -58,7 +67,10 @@ export const router = createBrowserRouter([
                 element:<MyProducts/>
             
             },
+
+            //moderator
             {
+              
                 path:'product-review-queue',
                 element:<ProductReviewQueue/>
             }
