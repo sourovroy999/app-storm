@@ -5,6 +5,8 @@ import { imageUpload } from '../../../../../api/utilities';
 import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import useSubscription from '../../../../../hooks/useSubscription';
+import useMyProducts from '../../../../../hooks/useMyProducts';
 
 
 
@@ -21,6 +23,16 @@ const AddProduct = () => {
     const { user } = useAuth()
 const axiosSecure=useAxiosSecure()
     const [loading, setLoading]=useState(false)
+   
+    const {data}=useSubscription();
+    console.log(data);
+    const{products}=useMyProducts();
+
+   
+
+
+    
+
 
 
 
@@ -36,11 +48,22 @@ const{mutateAsync}=useMutation({
         console.log('product saved successfully');
         toast.success('Product added for review')
         
+    },
+    onError:(error)=>{
+          if (error.response?.status === 409) {
+      toast.error(error.response.data.error); // "Free members can upload only one product"
+    } else {
+      toast.error("Something went wrong!");
+    }
     }
 
 
 })
 
+ if(data?.membership !== 'premium' && products.length==1){
+        console.log('u r free and uploaded one product');
+        
+    }
 
     const [images, setImages] = useState([])
     const [tags, setTags] = React.useState([])
@@ -170,8 +193,14 @@ const{mutateAsync}=useMutation({
 
 
     return (
+
+        <>
+   
+
+    
         <div >
             <p className='text-center uppercase text-2xl '>add your product</p>
+
 
 
             <div className=' max-w-xl mx-auto '>
@@ -312,7 +341,7 @@ const{mutateAsync}=useMutation({
                         />
                     </div>
 
-                    <button className='btn'>Add Product</button>
+                    <button disabled={data?.membership !== 'premium' && products.length==1} className='btn'>Add Product</button>
 
 
 
@@ -323,6 +352,8 @@ const{mutateAsync}=useMutation({
 
 
         </div>
+        </>
+
     );
 };
 

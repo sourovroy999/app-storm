@@ -14,14 +14,19 @@ import {
 import { app } from '../firebase/firebase.config'
 import axios from 'axios'
 import { reload } from 'firebase/auth'
+import { useQueryClient } from '@tanstack/react-query'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider()
 
+
+
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+
+  const queryClient=useQueryClient()
 
   const createUser = (email, password) => {
     setLoading(true)
@@ -31,6 +36,7 @@ const AuthProvider = ({ children }) => {
   const signIn = (email, password) => {
     setLoading(true)
     return signInWithEmailAndPassword(auth, email, password)
+
   }
 
   const signInWithGoogle = () => {
@@ -48,36 +54,9 @@ const AuthProvider = ({ children }) => {
     await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
       withCredentials: true,
     })
+     queryClient.removeQueries(['membershipStatus']); // remove cached query
     return signOut(auth)
   }
-
-// const updateUserProfile = async (name, photo) => {  
-//   try {
-//     // Update Firebase profile
-//     await updateProfile(auth.currentUser, {
-//       displayName: name,
-//       photoURL: photo,
-//     });
-
-//     // Create updated user object
-//     const updatedUser = {
-//       ...auth.currentUser,
-//       displayName: name,
-//       photoURL: photo
-//     };
-
-//     // Update local state
-//     setUser(updatedUser);
-
-//     // Save updated user to database
-//     await saveUser(updatedUser);
-
-//     return true;
-//   } catch (error) {
-//     console.error('Error updating profile:', error);
-//     throw error;
-//   }
-// }
 
 
 
@@ -157,9 +136,17 @@ const updateUserProfile = async (name, photo) => {
       if (currentUser) {
         getToken(currentUser.email)
         saveUser(currentUser)
+
+        queryClient.invalidateQueries(['subscription'])
         console.log('currrent user->', currentUser);
         
-      }
+      }else {
+      // user logged out
+      // ✅ Invalidate subscription query on logout
+      queryClient.invalidateQueries(['subscription']);
+      console.log('User logged out');
+    }
+
       setLoading(false)
     })
     return () => {

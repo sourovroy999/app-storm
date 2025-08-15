@@ -4,30 +4,13 @@ import { useMutation, useQuery } from '@tanstack/react-query'
 import useAuth from '../../../../../hooks/useAuth';
 import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
 import MySingleProduct from './MySingleProduct';
+import useMyProducts from '../../../../../hooks/useMyProducts';
 
 const Products = () => {
 
-    const{user}=useAuth()
 
-    const axiosSecure=useAxiosSecure()
 
-    const{data: products=[], refetch, isLoading }=useQuery({
-        queryKey:['my-products', user?.email],
-        queryFn:async()=>{
-            if(!user?.email){
-                return []
-            }
-            const{data}=await axiosSecure.get(`/my-products`)
-            
-            return data
-        },
-        enabled:!!user?.email,
-        onError:(err)=>{
-            console.log(err);
-            
-        }
-        
-    })
+    const{ products, refetch, isLoading }=useMyProducts();
 
 
 

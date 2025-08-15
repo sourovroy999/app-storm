@@ -1,4 +1,4 @@
-// Example snippet for your profile/dashboard component
+
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 

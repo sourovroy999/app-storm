@@ -23,10 +23,7 @@ const useUpvote = (refetch, productId = null) => {
             // Call the original refetch
             if (refetch) refetch();
             
-            // Invalidate specific queries for this product
-            queryClient.invalidateQueries({
-                queryKey: ['upvoteStatus', variables] // variables contains the productId
-            });
+         
             
             queryClient.invalidateQueries({
                 queryKey: ['totalUpvotes', variables]
@@ -36,8 +33,10 @@ const useUpvote = (refetch, productId = null) => {
             queryClient.invalidateQueries({
                 queryKey: ['upvoteStatus']
             });
-
-            toast.success(data.message || 'Action successful');
+ // Only show toast if not silent
+            if (!data.silent) {
+                toast.success(data.message || 'Action successful');
+            }
         },
 
         onError: (error) => {

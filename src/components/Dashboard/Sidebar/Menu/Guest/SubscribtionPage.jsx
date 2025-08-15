@@ -1,7 +1,4 @@
-import React from 'react';
-import useAxiosSecure from '../../../../../hooks/useAxiosSecure';
-
-  
+import useAxiosSecure from '../../../../../hooks/useAxiosSecure'; 
 
 
 const SubscribtionPage = () => {
