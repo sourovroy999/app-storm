@@ -17,7 +17,9 @@ import StatisticsPage from "../components/Dashboard/Sidebar/Menu/Admin/Statistic
 import UpdateProduct from "../components/Dashboard/Sidebar/Menu/Guest/UpdateProduct"
 import Products from "../components/Home/Products/Products"
 import DashboardIndex from "./DashboardIndex"
+import PrivateRoute from "./PrivateRoute"
 
+const withPrivate = (element) => <PrivateRoute>{element}</PrivateRoute>;
 
 
 
@@ -33,7 +35,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/products/:id',
-                element: <ProductDetails />
+                element: <PrivateRoute>
+                    <ProductDetails />
+                </PrivateRoute>
             },
             {
                 path:'/products',
@@ -43,28 +47,31 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashBoardLayout/>,
+        element: withPrivate(<DashBoardLayout/>),
         children:[
             {
                 index:true,
-                element: <DashboardIndex/>
-
-            },
+                element:   <DashboardIndex/>
+          },
             {
              
                 path:'/dashboard/my-profile',
-                element:<MyProfile/>
+                element:
+                    <MyProfile/>
+                
 
             },
             {
                 path:'add-product',
-                element:<AddProduct/>
-            
+                element:
+                    <AddProduct/>
             }
             ,
             {
                 path:'my-products',
-                element:<MyProducts/>
+                element:
+                    <MyProducts/>
+                
             
             },
 
@@ -72,12 +79,17 @@ export const router = createBrowserRouter([
             {
               
                 path:'product-review-queue',
-                element:<ProductReviewQueue/>
+        
+                 element:
+                    <ProductReviewQueue/>
+                
             }
             ,
             {
                 path:'reported-content',
-                element:<ReportedContent/>
+               element:
+                    <ReportedContent/>
+                
             }
             // admin
             ,

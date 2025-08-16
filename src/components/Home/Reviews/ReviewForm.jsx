@@ -73,7 +73,6 @@ const ReviewForm = ({productId}) => {
     // Add API call or other logic here
     const form=e.target
     // const description=form.description.value;
-    console.log(form);
     const userName=form.userName.value;
     const email=user?.email
     const userPhoto=user?.photoURL
@@ -114,7 +113,7 @@ const ReviewForm = ({productId}) => {
       <style>{styles}</style>
       <form
         onSubmit={handleSubmit}
-        className="max-w-xl bg-white p-4 rounded-md border border-gray-200 shadow-sm space-y-4 my-5"
+        className="max-w-xl  p-4 rounded-md border border-gray-200 shadow-sm space-y-4 my-5"
       >
         {/* Top Section - Image & Name */}
         <div className="flex flex-row items-center gap-4">
@@ -130,7 +129,7 @@ const ReviewForm = ({productId}) => {
               readOnly
               value={user?.displayName || user?.name || ''}
               placeholder="Your name"
-              className="w-48 px-3 py-2 bg-gray-50 rounded border-gray-300 text-sm"
+              className="w-48 px-3 py-2  rounded border-gray-300 text-sm"
             />
           </div>
         </div>
@@ -143,14 +142,14 @@ const ReviewForm = ({productId}) => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
-            className="w-full mt-1 px-3 py-2 rounded border border-gray-300 bg-gray-50 text-sm"
+            className="w-full mt-1 px-3 py-2 rounded border border-gray-300  text-sm"
             placeholder="Write your honest review..."
           />
         </div>
 
         {/* Rating */}
         <div className="rating-container">
-          <label className="block text-xs text-gray-500 mb-1">Rating</label>
+          <label className="block text-xs  mb-1">Rating</label>
           <div className="flex flex-row items-center gap-2">
             <Rating
               onClick={handleRating}
@@ -172,7 +171,7 @@ const ReviewForm = ({productId}) => {
         <button
         disabled={isPending}
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 text-sm font-medium"
+          className="w-full bg-blue-600  py-2 rounded hover:bg-blue-700 text-sm font-medium"
         >
           {isPending ? "Submitting..." : "Submit Review"}
 

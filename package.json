@@ -18,6 +18,8 @@
     "@zag-js/rating-group": "^1.21.1",
     "axios": "^1.10.0",
     "firebase": "^12.0.0",
+    "framer-motion": "^12.23.12",
+    "lucide-react": "^0.539.0",
     "prop-types": "^15.8.1",
     "rc-tabs": "^15.6.1",
     "react": "^19.1.0",

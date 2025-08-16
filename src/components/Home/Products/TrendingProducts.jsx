@@ -34,7 +34,7 @@ const TrendingProducts = () => {
 
            <p className="text-xs opacity-60 tracking-wide mb-4">Top Upvoted treding products</p>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid md:grid-cols-2  gap-4">
             {
                 trendingProducts.map(product=><SingleFeaturedProduct product={product} refetch={refetch} showTrendingBadge={true}/>)
             }

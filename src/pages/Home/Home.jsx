@@ -38,8 +38,8 @@ const Home = () => {
 
     return (
         <>
-        <Container>
             <Banner/>
+        <Container>
             <FeaturedProducts/>
             <TrendingProducts/>
             

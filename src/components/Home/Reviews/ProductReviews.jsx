@@ -4,6 +4,8 @@ import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import SingleProductReview from './SingleProductReview';
 
 const ProductReviews = ({productId}) => {
+    console.log(productId);
+    
 
     const axiosSecure=useAxiosSecure()
 
@@ -33,7 +35,7 @@ const ProductReviews = ({productId}) => {
     return (
         <div>
             {
-                reviews.map(review=> <SingleProductReview key={review._id} review={review}/>)
+                reviews?.map(review=> <SingleProductReview key={review._id} review={review}/>)
             }
             
         </div>
