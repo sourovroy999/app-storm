@@ -41,7 +41,10 @@ const Home = () => {
             <Banner/>
         <Container>
             <FeaturedProducts/>
+            <div className='px-'>
+
             <TrendingProducts/>
+            </div>
             
 
         </Container>

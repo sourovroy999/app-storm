@@ -55,11 +55,11 @@ const StormThemeBanner = () => {
           Animated stormy clouds, lightning flashes, and innovation in motion.
         </motion.p>
 
-        <div className="flex gap-4 justify-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-2xl text-lg">
+        <div className="flex flex-col md:flex-row gap-4 justify-center">
+          <button className="bg-blue-500 hover:bg-blue-600 sm:btn-sm text-white px-6 py-3 rounded-2xl text-lg">
             🌩 Join the Storm
           </button>
-          <button variant="outline" className="border-gray-400 text-white px-6 py-3 rounded-2xl text-lg">
+          <button variant="outline" className="border-gray-400 btn-sm text-white px-6 py-3 rounded-2xl text-lg">
             🚀 Launch Now
           </button>
         </div>

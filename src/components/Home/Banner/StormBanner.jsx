@@ -6,8 +6,8 @@ const icons = [Bolt, Cloud, Rocket, Star];
 export default function StormBanner() {
   return (
     <div className="relative h-full flex flex-col items-center justify-center text-center py-24 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 text-white overflow-hidden">
-      <h1 className="text-5xl font-bold mb-4">⚡ Welcome to AppStorm</h1>
-      <p className="text-lg max-w-xl mb-6">
+      <h1 className="text-4xl md:text-5xl font-bold mb-4">⚡ Welcome to AppStorm</h1>
+      <p className="text-lg max-w-xl px-2 mb-6">
         Discover, share, and upvote the next big apps.
       </p>
       {/* <button className="px-6 py-3 rounded-2xl bg-white text-indigo-600 font-bold shadow-lg hover:scale-105 transition">

@@ -30,7 +30,7 @@ const TrendingProducts = () => {
 
     return (
         <div>
-      <h2 className="text-3xl font-bold my-4">Trending Products</h2>
+      <h2 className="text-3xl text-center font-bold mt-8 mb-4">Trending Products</h2>
 
            <p className="text-xs opacity-60 tracking-wide mb-4">Top Upvoted treding products</p>
 

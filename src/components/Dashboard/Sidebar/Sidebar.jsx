@@ -53,14 +53,16 @@ const Sidebar = () => {
     return (
         <>
         {/* small screenn navabr */}
-        <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
+        <div className=' bg-gray-100 text-gray-800 flex justify-between md:hidden'>
           
             <div>
                   <div className='block cursor-pointer p-4 font-bold'>
-            <Link to='/'>
-            AppStorm
-
-            </Link>
+ <Link
+          to="/"
+          className="font-extrabold text-2xl tracking-wider bg-gradient-to-r from-cyan-400 to-purple-300 bg-clip-text text-transparent hover:from-cyan-300 hover:to-pink-300 transition-all duration-300"
+        >
+          AppStorm
+        </Link>
           </div>
             </div>
 
@@ -84,8 +86,12 @@ const Sidebar = () => {
           <div>
             <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center -auto'>
             
-
-              <Link to={'/'} className='text-2xl text-black font-bold'>AppStorm</Link>
+ <Link
+          to="/"
+          className="font-extrabold text-2xl tracking-wider bg-gradient-to-r from-cyan-400 to-purple-300 bg-clip-text text-transparent hover:from-cyan-300 hover:to-pink-300 transition-all duration-300"
+        >
+          AppStorm
+        </Link>
             </div>
           </div>
 

@@ -193,168 +193,154 @@ const{mutateAsync}=useMutation({
 
 
     return (
+<>
+  <div className="py-8 px-4">
+    <p className="text-center uppercase text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+      Add Your Product
+    </p>
 
-        <>
-   
-
-    
-        <div >
-            <p className='text-center uppercase text-2xl '>add your product</p>
-
-
-
-            <div className=' max-w-xl mx-auto '>
-
-                <form onSubmit={handleAddProduct} className='space-y-3' action="">
-
-                    {/* name */}
-                    <div>
-                        <label className="block font-medium ">Product Name</label>
-                        <input
-                            type="text"
-                            name="name"
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm "
-                            placeholder="Product Name"
-                            required
-                        />
-                    </div>
-
-                    {/* tagline */}
-                    <div>
-                        <label className="block font-medium ">Tag Line</label>
-                        <input
-                            type="text"
-                            name="tagline"
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm "
-                            placeholder="tagline"
-                            required
-                        />
-                    </div>
-
-                    {/* description */}
-                    <div>
-                        <label className="block font-medium ">description</label>
-                        <textarea
-                            rows='4'
-
-                            name="description"
-                            className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm "
-                            placeholder="description"
-                            required
-                        />
-                    </div>
-
-
-                    {/* logo */}
-                    <div>
-                        <label className="block font-medium ">Logo</label>
-                        <input
-                            type="file"
-                            name="logo"
-                            accept='image/*'
-
-                            className="mt-1 px-2 py-2  h-10 block w-full  rounded-md border-gray-300 shadow-sm "
-                            required
-                        />
-                    </div>
-
-
-                    {/* Creator Name */}
-                    <div>
-                        <label className="block font-medium ">Creator Name</label>
-                        <input
-                            type="text"
-                            name="creator_name"
-                            defaultValue={user?.displayName}
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm "
-                            readOnly
-                            required
-                        />
-                    </div>
-
-                    {/* Creator Email */}
-                    <div>
-                        <label className="block font-medium ">Creator Email</label>
-                        <input
-                            type="text"
-                            name="creator_email"
-                            defaultValue={user?.email}
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm "
-                            readOnly
-                            required
-                        />
-                    </div>
-
-                    {/* Creator Image */}
-                    <div>
-                        <label className="block font-medium ">Creator Image</label>
-                        <input
-                            type="text"
-                            name="avatar"
-                            defaultValue={user?.photoURL}
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm "
-                            readOnly
-                            required
-                        />
-                    </div>
-
-                    {/* tagss */}
-                    <div className="">
-                        <label className="block font-medium py-2 ">Tags</label>
-                        <ReactTags
-                            tags={tags}
-                            suggestions={suggestions}
-                            separators={[SEPARATORS.ENTER, SEPARATORS.COMMA]}
-                            handleDelete={handleDelete}
-                            handleAddition={handleAddition}
-                            handleDrag={handleDrag}
-                            onTagUpdate={onTagUpdate}
-                            inputFieldPosition="bottom"
-                            placeholder="Add new tags"
-                            maxTags={6}
-                            editable
-                            classNames={{
-                                tags: 'flex flex-wrap items-center border border-gray-300 rounded-md p-2 min-h-[40px] focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200',
-                                tagInput: 'flex-grow min-w-[150px]', // Container for the input field
-                                tagInputField: 'outline-none border-none p-1 w-full flex-grow text-gray-700', // The actual input field
-                                selected: 'flex flex-wrap gap-2', // Container for selected tags
-                                tag: 'bg-blue-500 text-white rounded-full px-3 py-1 text-sm flex items-center', // Individual tag
-                                remove: 'ml-2 cursor-pointer text-white hover:text-gray-200', // Remove button for a tag
-                                suggestions: 'absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full shadow-lg max-h-60 overflow-y-auto', // Suggestions dropdown
-                                activeSuggestion: 'bg-blue-100', // Active suggestion item
-                            }}
-                        />
-                    </div>
-
-                    {/* screenshot upload */}
-
-                    <div>
-                        <label className="block font-medium ">Upload screenshot</label>
-                        <input
-                            type="file"
-                            multiple
-                            accept='image/*'
-                            name="screenshots"
-                            onChange={handleImageChange}
-                            className="mt-1 px-2 py-2  h-10 block w-full  rounded-md border-gray-300 shadow-sm "
-                            required
-                        />
-                    </div>
-
-                    <button disabled={data?.membership !== 'premium' && products.length==1} className='btn'>Add Product</button>
-
-
-
-
-
-                </form>
-            </div>
-
-
+    <div className="max-w-2xl mx-auto bg-white dark:bg-gray-900 shadow-lg rounded-xl p-6 md:p-8 border border-gray-200 dark:border-gray-700">
+      <form onSubmit={handleAddProduct} className="space-y-5">
+        {/* Product Name */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200">Product Name</label>
+          <input
+            type="text"
+            name="name"
+            className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-400"
+            placeholder="Enter product name"
+            required
+          />
         </div>
-        </>
+
+        {/* Tagline */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200">Tag Line</label>
+          <input
+            type="text"
+            name="tagline"
+            className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-400"
+            placeholder="Catchy tagline..."
+            required
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200">Description</label>
+          <textarea
+            rows="4"
+            name="description"
+            className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-400"
+            placeholder="Describe your product..."
+            required
+          />
+        </div>
+
+        {/* Logo Upload */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200">Logo</label>
+          <input
+            type="file"
+            name="logo"
+            accept="image/*"
+            className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-300 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-600 file:text-white hover:file:bg-indigo-700"
+            required
+          />
+        </div>
+
+        {/* Creator Info (read-only) */}
+        <div className="grid md:grid-cols-2 gap-4">
+          <div>
+            <label className="block font-medium text-gray-700 dark:text-gray-200">Creator Name</label>
+            <input
+              type="text"
+              name="creator_name"
+              defaultValue={user?.displayName}
+              className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-2 shadow-sm"
+              readOnly
+            />
+          </div>
+          <div>
+            <label className="block font-medium text-gray-700 dark:text-gray-200">Creator Email</label>
+            <input
+              type="text"
+              name="creator_email"
+              defaultValue={user?.email}
+              className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-2 shadow-sm"
+              readOnly
+            />
+          </div>
+        </div>
+
+        {/* Creator Image */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200">Creator Image</label>
+          <input
+            type="text"
+            name="avatar"
+            defaultValue={user?.photoURL}
+            className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-3 py-2 shadow-sm"
+            readOnly
+          />
+        </div>
+
+        {/* Tags */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200 py-2">Tags</label>
+          <ReactTags
+            tags={tags}
+            suggestions={suggestions}
+            separators={[SEPARATORS.ENTER, SEPARATORS.COMMA]}
+            handleDelete={handleDelete}
+            handleAddition={handleAddition}
+            handleDrag={handleDrag}
+            onTagUpdate={onTagUpdate}
+            inputFieldPosition="bottom"
+            placeholder="Add tags..."
+            maxTags={6}
+            editable
+            classNames={{
+              tags: 'flex flex-wrap items-center border border-gray-300 dark:border-gray-600 rounded-lg p-2 bg-gray-50 dark:bg-gray-800',
+              tagInput: 'flex-grow min-w-[150px]',
+              tagInputField: 'outline-none border-none p-1 w-full bg-transparent text-gray-700 dark:text-gray-200',
+              selected: 'flex flex-wrap gap-2',
+              tag: 'bg-indigo-600 text-white rounded-full px-3 py-1 text-sm flex items-center',
+              remove: 'ml-2 cursor-pointer text-white hover:text-gray-200',
+              suggestions: 'absolute z-10 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md mt-1 w-full shadow-lg max-h-60 overflow-y-auto',
+              activeSuggestion: 'bg-indigo-100 dark:bg-indigo-800',
+            }}
+          />
+        </div>
+
+        {/* Screenshots */}
+        <div>
+          <label className="block font-medium text-gray-700 dark:text-gray-200">Upload Screenshots</label>
+          <input
+            type="file"
+            multiple
+            accept="image/*"
+            name="screenshots"
+            onChange={handleImageChange}
+            className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-300 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-indigo-600 file:text-white hover:file:bg-indigo-700"
+            required
+          />
+        </div>
+
+        {/* Submit */}
+        <button
+          disabled={data?.membership !== 'premium' && products.length === 1}
+          className="w-full py-3 rounded-lg font-semibold text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 shadow-lg transition disabled:opacity-50"
+        >
+          Add Product
+        </button>
+      </form>
+    </div>
+  </div>
+</>
+
 
     );
 };
 
-export default AddProduct;
+export default AddProduct;  
