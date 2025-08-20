@@ -26,10 +26,10 @@ const Banner = () => {
 
      
 
-        <SwiperSlide className="h-full">
+        {/* <SwiperSlide className="h-full">
             <StormThemeBanner/>
             
-         </SwiperSlide>
+         </SwiperSlide> */}
 
 
         <SwiperSlide className="h-full" >

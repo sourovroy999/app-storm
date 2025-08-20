@@ -59,59 +59,66 @@ const Tabs = ({ product }) => {
                 </TabList>
                 <TabPanels className="mt-4">
                     {/* Overview */}
-                    <TabPanel>
-                        <Swiper
-                            modules={[Navigation, Pagination, Scrollbar, A11y]}
-                            spaceBetween={15}
-                            navigation
-                            pagination={{ clickable: true }}
-                            scrollbar={{ draggable: true }}
-                            observer={true}
-                            observeParents={true}
-                            breakpoints={{
-                                320: { slidesPerView: 1 },
-                                640: { slidesPerView: 1 },
-                                768: { slidesPerView: 2 },
-                                1024: { slidesPerView: 3 },
-                            }}
-                        >
-                            {screenshots.map((screenShot, index) => (
-                                <SwiperSlide key={index}>
-                                    <div
-                                        onClick={() => openModal(screenShot)}
-                                        className="relative w-full h-[200px] sm:h-[240px] md:h-[260px] rounded-2xl overflow-hidden cursor-pointer"
-                                    >
-                                        <img
-                                            src={screenShot}
-                                            alt=""
-                                            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                                        />
-                                    </div>
-                                </SwiperSlide>
-                            ))}
-                        </Swiper>
+<TabPanel>
+  <Swiper
+    modules={[Navigation, Pagination, Scrollbar, A11y]}
+    spaceBetween={20} // slightly more space between slides
+    navigation
+    pagination={{ clickable: true }}
+    scrollbar={{ draggable: true }}
+    observer={true}
+    observeParents={true}
+    // breakpoints={{
+    //   320: { slidesPerView: 1 },
+    //   640: { slidesPerView: 1 },
+    //   768: { slidesPerView: 2 },
+    //   1024: { slidesPerView: 3 },
+    //   1280: { slidesPerView: 4 }, // for larger screens
+    // }}
+    slidesPerView={1}
+    className="pb-10"
+  >
+    {screenshots.map((screenShot, index) => (
+      <SwiperSlide key={index} className="flex justify-center">
+        <div
+        //   onClick={() => openModal(screenShot)}
+          className="w-full h-[220px] sm:h-[260px] md:h-[280px] lg:h-[300px] rounded-2xl overflow-hidden cursor-pointer shadow-lg transition-transform duration-300 "
+        >
+          <img
+            src={screenShot}
+            alt="Product screenshot"
+            className="w-full h-full object-cover"
+          />
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
 
-                        <h3 className="text-lg font-bold mt-6 mb-2">Comments ({comments.length})</h3>
-                        <div className='flex flex-col gap-4'>
-                            {comments.map(comment => <Comments key={comment._id} comment={comment} />)}
-                        </div>
+  <h3 className="text-lg font-bold mt-6 mb-2">Comments ({comments.length})</h3>
+  <div className="flex flex-col gap-4">
+    {comments.map((comment) => (
+      <Comments key={comment._id} comment={comment} />
+    ))}
+  </div>
 
-                        <form onSubmit={handleCommentSubmit} className="w-full max-w-md my-6 px-4">
-                            <Field>
-                                <Textarea 
-                                    required
-                                    name='commentText'
-                                    placeholder="What's on your mind?"
-                                    className={clsx(
-                                        'mt-3 block w-full resize-none rounded-lg border-none px-3 py-1.5 text-sm/6 bg-base-200',
-                                        'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
-                                    )}
-                                    rows={3}
-                                />
-                            </Field>
-                            <button className="btn my-2">{isPending ? 'Commenting..' : 'Comment'}</button>
-                        </form>
-                    </TabPanel>
+  <form onSubmit={handleCommentSubmit} className="w-full max-w-md my-6 px-4">
+    <Field>
+      <Textarea
+        required
+        name="commentText"
+        placeholder="What's on your mind?"
+        className={clsx(
+          'mt-3 block w-full resize-none rounded-lg border-none px-3 py-1.5 text-sm/6 bg-base-200',
+          'focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25'
+        )}
+        rows={3}
+      />
+    </Field>
+    <button className="btn my-2">
+      {isPending ? 'Commenting..' : 'Comment'}
+    </button>
+  </form>
+</TabPanel>
 
                     {/* Reviews */}
                     <TabPanel>
@@ -120,9 +127,9 @@ const Tabs = ({ product }) => {
                     </TabPanel>
 
                     {/* Team */}
-                    <TabPanel>
+                    {/* <TabPanel>
                         <p className="text-gray-700">Team members listed here.</p>
-                    </TabPanel>
+                    </TabPanel> */}
                 </TabPanels>
             </TabGroup>
 

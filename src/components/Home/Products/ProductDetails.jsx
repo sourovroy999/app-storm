@@ -127,7 +127,7 @@ const ProductDetails = () => {
         <div>
           <Button
             onClick={() => setIsOpen(true)}
-            className="rounded-md bg-red-400 dark:bg-red-600 px-4 py-2 text-white hover:bg-red-500 dark:hover:bg-red-700 transition"
+            className="rounded-md  px-4 py-2 text-white btn btn-sm"
           >
             Report Content
           </Button>

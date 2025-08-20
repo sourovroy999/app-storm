@@ -53,27 +53,28 @@ const Sidebar = () => {
     return (
         <>
         {/* small screenn navabr */}
-        <div className=' bg-gray-100 text-gray-800 flex justify-between md:hidden'>
-          
-            <div>
-                  <div className='block cursor-pointer p-4 font-bold'>
- <Link
+      <nav className="navbar flex items-center justify-between px-6 md:px-10  bg-gradient-to-r from-slate-800 via-purple-900 to-slate-800 text-white border-b border-purple-500/30">
+      
+      {/* Logo */}
+      <div className="flex items-center">
+        <Link
           to="/"
           className="font-extrabold text-2xl tracking-wider bg-gradient-to-r from-cyan-400 to-purple-300 bg-clip-text text-transparent hover:from-cyan-300 hover:to-pink-300 transition-all duration-300"
         >
           AppStorm
         </Link>
-          </div>
-            </div>
+      </div>
 
-                    <button
+      {/* Mobile menu button */}
+      <div className="md:hidden">
+        <button
           onClick={handleToggle}
-          className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
+          className="p-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-400"
         >
-          <AiOutlineBars className='h-5 w-5' />
+          <AiOutlineBars className="h-6 w-6" />
         </button>
-        </div>
-
+      </div>
+    </nav>
 
         {/* sidebar */}
 

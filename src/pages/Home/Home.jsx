@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router';
 import useUpvote from '../../hooks/useUpvote';
 import useAuth from '../../hooks/useAuth';
 import TrendingProducts from '../../components/Home/Products/TrendingProducts';
+import SuccessStories from '../../components/Home/successStories/SuccessStories';
 
 const Home = () => {
 
@@ -45,6 +46,8 @@ const Home = () => {
 
             <TrendingProducts/>
             </div>
+
+            <SuccessStories/>
             
 
         </Container>

@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 import ReportedSingleProduct from "./ReportedSingleProduct";
+import LoadingSpinner from "../../../../Spinner/LoadingSpinner";
 
 
 const ReportedContent = () => {
@@ -23,7 +24,7 @@ const ReportedContent = () => {
     })
 
     if(isLoading){
-        return <p>Loading Products...</p>
+        return <LoadingSpinner/>
 }
 
 console.log(reportedProducts);
@@ -36,10 +37,10 @@ console.log(reportedProducts);
 
 
     return (
-        <div>
+         <div className="max-w-4xl mx-auto  ">
             <p className="text-center">
 
-            Reports :
+         
             </p>
             <div className="">
             <div className="text-3xl font-bold my-4 text-center">

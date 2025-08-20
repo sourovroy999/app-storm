@@ -7,6 +7,7 @@ import Footer from "../components/Outlets/Footer";
 
 
 const MainLayout = () => {
+    
     return (
         <div>
             <Navbar />

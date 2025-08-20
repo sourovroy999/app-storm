@@ -1,6 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 import PendingSingleProduct from "./PendingSingleProduct";
+import useProductCount from "../../../../../hooks/useProductCount";
+import LoadingSpinner from "../../../../Spinner/LoadingSpinner";
 
 const ProductReviewQueue = () => {
     const axiosSecure=useAxiosSecure()
@@ -19,17 +21,20 @@ const ProductReviewQueue = () => {
 
     })
 
-    const { data: counts , isLoading:isGettingCount} = useQuery({
-  queryKey: ['productStatusCounts'],
-  queryFn: async () => {
-    const res = await axiosSecure.get('/product-status-counts');
-    return res.data;
-  }
-   });
+    const { counts, isGettingCount, isError} = useProductCount()
+
+
+  //   const { data: counts , isLoading:isGettingCount} = useQuery({
+  // queryKey: ['productStatusCounts'],
+  // queryFn: async () => {
+  //   const res = await axiosSecure.get('/product-status-counts');
+  //   return res.data;
+  // }
+  //  });
 
 
     if(isLoading || isGettingCount){
-        return <p>Loading queue...</p>
+        return <LoadingSpinner/>
 }
 
 console.log(pendingProducts);
@@ -41,14 +46,14 @@ console.log(counts);
 
 
     return (
-        <div>
+        <div className="max-w-4xl mx-auto  ">
           
             <div className="">
             <div className="text-3xl font-bold my-4 text-center">
                 Pending Products for Review
             </div>
 
-              <div className="flex flex-col gap-2  my-4">
+              <div className=" hidden flex-col gap-2  my-4">
                 <p>
 
             Pending Product :{counts.pending}

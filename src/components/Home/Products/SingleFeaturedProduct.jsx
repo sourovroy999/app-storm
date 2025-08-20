@@ -49,7 +49,7 @@ const SingleFeaturedProduct = ({ product, refetch, showTrendingBadge }) => {
   };
 
   return (
-    <li className="rounded-xl z-10 p-4 shadow-sm hover:shadow-md transition flex flex-col gap-3 h-full">
+    <li className="rounded-xl dark:bg-base-200 z-10 p-4 shadow-sm hover:shadow-md  transition flex flex-col gap-3 h-full">
       {/* Make the entire card clickable except for buttons */}
       <Link to={`/products/${_id}`} className="flex flex-col gap-3 h-full">
         {/* Thumbnail & name */}
@@ -110,6 +110,7 @@ const SingleFeaturedProduct = ({ product, refetch, showTrendingBadge }) => {
         <button onClick={handleDetailsClick} className="btn">
           Details
         </button>
+        
 
         <div className="flex items-center gap-2">
           <svg

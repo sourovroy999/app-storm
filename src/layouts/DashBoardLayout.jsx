@@ -11,8 +11,8 @@ const DashBoardLayout = () => {
             </div>
 
             {/* Outlet-> dynamic content */}
-            <div className="flex-1 md:ml-64">
-                <div className="p-5">
+            <div className="flex-1 ">
+                <div className="">
 
             <Outlet/>
                 </div>

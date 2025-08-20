@@ -32,6 +32,7 @@
     "react-simple-star-rating": "^5.1.7",
     "react-slick": "^0.30.3",
     "react-tag-input": "^6.10.6",
+    "recharts": "^3.1.2",
     "swiper": "^11.2.10",
     "tailwindcss": "^4.1.11"
   },

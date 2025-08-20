@@ -8,11 +8,14 @@ import toast from 'react-hot-toast';
 import { useParams } from 'react-router';
 
 const suggestions = [
-    { id: 'Apple', text: 'Apple' },
-    { id: 'Banana', text: 'Banana' },
-    { id: 'Orange', text: 'Orange' },
-    { id: 'Grape', text: 'Grape' },
-]
+  { id: 'AI', text: 'AI Tools' },
+  { id: 'Productivity', text: 'Productivity' },
+  { id: 'Finance', text: 'Finance & Investing' },
+  { id: 'Health', text: 'Health & Fitness' },
+  { id: 'Education', text: 'Learning & Courses' },
+  { id: 'Ecommerce', text: 'E-commerce' },
+];
+
 
 const UpdateProduct = () => {
     const { id } = useParams()
@@ -225,236 +228,260 @@ const UpdateProduct = () => {
     if (isError) return <div>Error loading product: {error?.message}</div>
 
     return (
-        <div>
-            <p className='text-center uppercase text-2xl'>Update your product</p>
+<div className="bg-white/90 backdrop-blur-lg shadow-lg rounded-2xl border border-gray-200 p-6">
+<p className="text-center text-3xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight mb-8">
+  Update Your Product
+</p>
 
-            <div className='max-w-xl mx-auto'>
-                <form onSubmit={handleUpdateProduct} className='space-y-3'>
-                    {/* name */}
-                    <div>
-                        <label className="block font-medium">Product Name</label>
-                        <input
-                            type="text"
-                            defaultValue={name || ''}
-                            name="name"
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                            placeholder="Product Name"
-                            required
-                        />
-                    </div>
 
-                    {/* tagline */}
-                    <div>
-                        <label className="block font-medium">Tag Line</label>
-                        <input
-                            defaultValue={tagline || ''}
-                            type="text"
-                            name="tagline"
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                            placeholder="tagline"
-                            required
-                        />
-                    </div>
+  <div className="max-w-2xl mx-auto">
+    <form onSubmit={handleUpdateProduct} className="space-y-6">
+      {/* name */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">Product Name</label>
+        <input
+          type="text"
+          defaultValue={name || ""}
+          name="name"
+          className="w-full rounded-xl border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 py-2 shadow-sm"
+          placeholder="Product Name"
+          required
+        />
+      </div>
 
-                    {/* description */}
-                    <div>
-                        <label className="block font-medium">Description</label>
-                        <textarea
-                            rows='4'
-                            defaultValue={description || ''}
-                            name="description"
-                            className="mt-1 p-2 block w-full rounded-md border-gray-300 shadow-sm"
-                            placeholder="description"
-                            required
-                        />
-                    </div>
+      {/* tagline */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">Tag Line</label>
+        <input
+          defaultValue={tagline || ""}
+          type="text"
+          name="tagline"
+          className="w-full rounded-xl border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 px-3 py-2 shadow-sm"
+          placeholder="Tagline"
+          required
+        />
+      </div>
 
-                    {/* logo */}
-                    <div className='flex gap-4 items-end'>
-                        <div className='flex-1'>
-                            <label className="block font-medium">Logo</label>
-                            <input
-                                type="file"
-                                name="logo"
-                                accept='image/*'
-                                onChange={handleLogoChange}
-                                className="mt-1 px-2 py-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                            />
-                        </div>
-                        <div className='flex-shrink-0'>
-                            <img 
-                                className='w-24 h-24 object-cover rounded-lg border-2 border-gray-300' 
-                                src={logoPreview || logo || '/placeholder-logo.png'} 
-                                alt="Logo preview" 
-                            />
-                        </div>
-                    </div>
+      {/* description */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">Description</label>
+        <textarea
+          rows="4"
+          defaultValue={description || ""}
+          name="description"
+          className="w-full rounded-xl border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 p-3 shadow-sm"
+          placeholder="Describe your product"
+          required
+        />
+      </div>
 
-                    {/* Creator Name */}
-                    <div>
-                        <label className="block font-medium">Creator Name</label>
-                        <input
-                            type="text"
-                            name="creator_name"
-                            defaultValue={creator_name || ''}
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                            readOnly
-                            required
-                        />
-                    </div>
-
-                    {/* Creator Email */}
-                    <div>
-                        <label className="block font-medium">Creator Email</label>
-                        <input
-                            type="text"
-                            name="creator_email"
-                            defaultValue={creator_email || ''}
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                            readOnly
-                            required
-                        />
-                    </div>
-
-                    {/* Creator Image */}
-                    <div>
-                        <label className="block font-medium">Creator Image</label>
-                        <input
-                            type="text"
-                            name="avatar"
-                            defaultValue={user?.photoURL || ''}
-                            className="mt-1 px-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                            readOnly
-                            required
-                        />
-                    </div>
-
-                    {/* tags */}
-                    <div>
-                        <label className="block font-medium py-2">Tags</label>
-                        <ReactTags
-                            tags={tags}
-                            suggestions={suggestions}
-                            separators={[SEPARATORS.ENTER, SEPARATORS.COMMA]}
-                            handleDelete={handleDelete}
-                            handleAddition={handleAddition}
-                            handleDrag={handleDrag}
-                            onTagUpdate={onTagUpdate}
-                            inputFieldPosition="bottom"
-                            placeholder="Add new tags"
-                            maxTags={6}
-                            editable
-                            classNames={{
-                                tags: 'flex flex-wrap items-center border border-gray-300 rounded-md p-2 min-h-[40px] focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-200',
-                                tagInput: 'flex-grow min-w-[150px]',
-                                tagInputField: 'outline-none border-none p-1 w-full flex-grow text-gray-700',
-                                selected: 'flex flex-wrap gap-2',
-                                tag: 'bg-blue-500 text-white rounded-full px-3 py-1 text-sm flex items-center',
-                                remove: 'ml-2 cursor-pointer text-white hover:text-gray-200',
-                                suggestions: 'absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full shadow-lg max-h-60 overflow-y-auto',
-                                activeSuggestion: 'bg-blue-100',
-                            }}
-                        />
-                    </div>
-
-                    {/* screenshot upload */}
-                    <div>
-                        <label className="block font-medium">Upload Screenshots</label>
-                        <input
-                            type="file"
-                            multiple
-                            accept='image/*'
-                            name="screenshots"
-                            onChange={handleImageChange}
-                            className="mt-1 px-2 py-2 h-10 block w-full rounded-md border-gray-300 shadow-sm"
-                        />
-                        <p className="text-xs text-gray-500 mt-1">You can select multiple files or upload one by one</p>
-                        
-                        {/* Display screenshots */}
-                        <div className='mt-3'>
-                            <div className='space-y-4'>
-                                {/* Current Screenshots */}
-                                {currentScreenshots.length > 0 && (
-                                    <div>
-                                        <p className='text-sm text-gray-600 mb-2'>Current Screenshots ({currentScreenshots.length}):</p>
-                                        <div className='grid grid-cols-2 md:grid-cols-3 gap-3'>
-                                            {currentScreenshots.map((screenshot, index) => (
-                                                <div key={`current-${index}`} className='relative group'>
-                                                    <img 
-                                                        className='w-full h-32 object-cover rounded-lg border-2 border-blue-300' 
-                                                        src={screenshot} 
-                                                        alt={`Current Screenshot ${index + 1}`}
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => removeCurrentScreenshot(index)}
-                                                        className='absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity'
-                                                    >
-                                                        ×
-                                                    </button>
-                                                    <span className='absolute bottom-2 left-2 bg-blue-500 text-white text-xs px-2 py-1 rounded'>
-                                                        Current
-                                                    </span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {/* New Screenshots */}
-                                {imagesPreviews.length > 0 && (
-                                    <div>
-                                        <p className='text-sm text-gray-600 mb-2'>New Screenshots ({imagesPreviews.length}):</p>
-                                        <div className='grid grid-cols-2 md:grid-cols-3 gap-3'>
-                                            {imagesPreviews.map((preview, index) => (
-                                                <div key={`new-${index}`} className='relative group'>
-                                                    <img 
-                                                        className='w-full h-32 object-cover rounded-lg border-2 border-green-300' 
-                                                        src={preview} 
-                                                        alt={`New Screenshot ${index + 1}`}
-                                                    />
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => removeScreenshot(index)}
-                                                        className='absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity'
-                                                    >
-                                                        ×
-                                                    </button>
-                                                    <span className='absolute bottom-2 left-2 bg-green-500 text-white text-xs px-2 py-1 rounded'>
-                                                        New
-                                                    </span>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                            
-                            {currentScreenshots.length === 0 && imagesPreviews.length === 0 && (
-                                <p className='text-gray-400 text-sm text-center py-8 border-2 border-dashed border-gray-300 rounded-lg'>
-                                    No screenshots uploaded yet
-                                </p>
-                            )}
-
-                            {/* Total count */}
-                            {(currentScreenshots.length > 0 || imagesPreviews.length > 0) && (
-                                <div className='mt-3 p-2 bg-gray-50 rounded text-sm text-gray-600'>
-                                    Total Screenshots: {currentScreenshots.length + imagesPreviews.length}
-                                </div>
-                            )}
-                        </div>
-                    </div>
-
-                    <button 
-                        type="submit" 
-                        disabled={loading}
-                        className='btn w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 disabled:opacity-50'
-                    >
-                        {loading ? 'Updating...' : 'Update Product'}
-                    </button>
-                </form>
-            </div>
+      {/* logo */}
+      <div className="flex gap-4 items-center">
+        <div className="flex-1">
+          <label className="block font-medium text-gray-700 mb-1">Logo</label>
+          <input
+            type="file"
+            name="logo"
+            accept="image/*"
+            onChange={handleLogoChange}
+            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 
+                       file:rounded-full file:border-0 file:text-sm file:font-semibold 
+                       file:bg-blue-50 file:text-blue-600 hover:file:bg-blue-100"
+          />
         </div>
+        <div className="flex-shrink-0">
+          <img
+            className="w-20 h-20 object-cover rounded-xl border border-gray-300 shadow-sm"
+            src={logoPreview || logo || "/placeholder-logo.png"}
+            alt="Logo preview"
+          />
+        </div>
+      </div>
+
+      {/* creator name */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">Creator Name</label>
+        <input
+          type="text"
+          name="creator_name"
+          defaultValue={creator_name || ""}
+          className="w-full rounded-xl bg-gray-50 border-gray-200 px-3 py-2 text-gray-700 shadow-sm"
+          readOnly
+          required
+        />
+      </div>
+
+      {/* creator email */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">Creator Email</label>
+        <input
+          type="text"
+          name="creator_email"
+          defaultValue={creator_email || ""}
+          className="w-full rounded-xl bg-gray-50 border-gray-200 px-3 py-2 text-gray-700 shadow-sm"
+          readOnly
+          required
+        />
+      </div>
+
+      {/* creator image */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">Creator Image</label>
+        <input
+          type="text"
+          name="avatar"
+          defaultValue={user?.photoURL || ""}
+          className="w-full rounded-xl bg-gray-50 border-gray-200 px-3 py-2 text-gray-700 shadow-sm"
+          readOnly
+          required
+        />
+      </div>
+
+      {/* tags */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-2">Tags</label>
+        <ReactTags
+          tags={tags}
+          suggestions={suggestions}
+          separators={[SEPARATORS.ENTER, SEPARATORS.COMMA]}
+          handleDelete={handleDelete}
+          handleAddition={handleAddition}
+          handleDrag={handleDrag}
+          onTagUpdate={onTagUpdate}
+          inputFieldPosition="bottom"
+          placeholder="Add new tags"
+          maxTags={6}
+          editable
+          classNames={{
+            tags: "flex flex-wrap gap-2 items-center border border-gray-300 rounded-xl p-2 focus-within:ring-2 focus-within:ring-blue-200",
+            tagInput: "flex-grow min-w-[150px]",
+            tagInputField:
+              "outline-none border-none p-2 w-full flex-grow text-gray-700",
+            selected: "flex flex-wrap gap-2",
+            tag: "bg-blue-500 text-white rounded-full px-3 py-1 text-sm flex items-center shadow-sm",
+            remove:
+              "ml-2 cursor-pointer text-white hover:text-gray-200 transition",
+            suggestions:
+              "absolute z-10 bg-white border border-gray-300 rounded-md mt-1 w-full shadow-lg max-h-60 overflow-y-auto",
+            activeSuggestion: "bg-blue-100",
+          }}
+        />
+      </div>
+
+      {/* screenshots */}
+      <div>
+        <label className="block font-medium text-gray-700 mb-1">
+          Upload Screenshots
+        </label>
+        <input
+          type="file"
+          multiple
+          accept="image/*"
+          name="screenshots"
+          onChange={handleImageChange}
+          className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 
+                     file:rounded-full file:border-0 file:text-sm file:font-semibold 
+                     file:bg-green-50 file:text-green-600 hover:file:bg-green-100"
+        />
+        <p className="text-xs text-gray-500 mt-2">
+          You can select multiple files or upload one by one
+        </p>
+
+        {/* previews */}
+        <div className="mt-4 space-y-4">
+          {/* current screenshots */}
+          {currentScreenshots.length > 0 && (
+            <div>
+              <p className="text-sm font-medium text-gray-600 mb-2">
+                Current Screenshots ({currentScreenshots.length})
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {currentScreenshots.map((screenshot, index) => (
+                  <div
+                    key={`current-${index}`}
+                    className="relative group rounded-xl overflow-hidden shadow-md"
+                  >
+                    <img
+                      className="w-full h-32 object-cover"
+                      src={screenshot}
+                      alt={`Screenshot ${index + 1}`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeCurrentScreenshot(index)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm hover:bg-red-600 opacity-0 group-hover:opacity-100 transition"
+                    >
+                      ×
+                    </button>
+                    <span className="absolute bottom-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded shadow">
+                      Current
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* new screenshots */}
+          {imagesPreviews.length > 0 && (
+            <div>
+              <p className="text-sm font-medium text-gray-600 mb-2">
+                New Screenshots ({imagesPreviews.length})
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {imagesPreviews.map((preview, index) => (
+                  <div
+                    key={`new-${index}`}
+                    className="relative group rounded-xl overflow-hidden shadow-md"
+                  >
+                    <img
+                      className="w-full h-32 object-cover"
+                      src={preview}
+                      alt={`Screenshot ${index + 1}`}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeScreenshot(index)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-7 h-7 flex items-center justify-center text-sm hover:bg-red-600 opacity-0 group-hover:opacity-100 transition"
+                    >
+                      ×
+                    </button>
+                    <span className="absolute bottom-2 left-2 bg-green-600 text-white text-xs px-2 py-1 rounded shadow">
+                      New
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {currentScreenshots.length === 0 && imagesPreviews.length === 0 && (
+            <p className="text-gray-400 text-sm text-center py-8 border-2 border-dashed border-gray-300 rounded-xl">
+              No screenshots uploaded yet
+            </p>
+          )}
+
+          {(currentScreenshots.length > 0 || imagesPreviews.length > 0) && (
+            <div className="mt-3 p-2 bg-gray-50 rounded-xl text-sm text-gray-600">
+              Total Screenshots:{" "}
+              {currentScreenshots.length + imagesPreviews.length}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* submit */}
+      <button
+        type="submit"
+        disabled={loading}
+        className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl shadow-md hover:from-blue-600 hover:to-blue-700 transition disabled:opacity-50"
+      >
+        {loading ? "Updating..." : "Update Product"}
+      </button>
+    </form>
+  </div>
+</div>
+
     );
 };
 

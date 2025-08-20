@@ -21,8 +21,8 @@ const SubscribtionPage = () => {
   };
 
     return (
-       <div className="card w-96 bg-base-100 shadow-sm">
-  <div className="card-body">
+       <div className="card max-w-96 dark:from-blue-900/20 dark:to-purple-900/20 shadow-sm">
+  <div className="card-body p-3 md:p-0">
     <span className="badge badge-xs badge-warning">Most Popular</span>
     <div className="flex justify-between">
       <h2 className="text-3xl font-bold">Premium</h2>

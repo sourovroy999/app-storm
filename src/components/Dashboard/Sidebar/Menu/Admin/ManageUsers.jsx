@@ -1,25 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
+
 import SingleUser from "./SingleUser";
+import useUsers from "../../../../../hooks/moderator/useUsers";
 
 
 const ManageUsers = () => {
 
-    const axiosSecure=useAxiosSecure()
 
-    const{data:users=[], isLoading, refetch}=useQuery({
-        queryKey:['all-users'],
-        queryFn:async()=>{
-            const{data}=await axiosSecure.get('/users')
-            // refetch()
-            return data
-        },
-        onError:(err)=>{
-            console.log(err);
-            
-        }
 
-    })
+    const{users, isLoading, refetch}=useUsers()
+
 
     if(isLoading){
         return <p>Loading users...</p>
@@ -30,8 +19,8 @@ const ManageUsers = () => {
 
 
     return (
-        <div>
-            ManageUsers: {users?.length}
+        <div className="md:px-32">
+            {/* ManageUsers: {users?.length} */}
 
             <div className="overflow-x-auto">
   <table className="table">

@@ -194,8 +194,9 @@ const{mutateAsync}=useMutation({
 
     return (
 <>
-  <div className="py-8 px-4">
-    <p className="text-center uppercase text-2xl font-bold mb-6 text-gray-800 dark:text-gray-100">
+  <div className="py-4 px-4">
+    <p className="text-center text-3xl font-bold bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent tracking-tight mb-8">
+
       Add Your Product
     </p>
 
@@ -205,6 +206,7 @@ const{mutateAsync}=useMutation({
         <div>
           <label className="block font-medium text-gray-700 dark:text-gray-200">Product Name</label>
           <input
+          autoFocus
             type="text"
             name="name"
             className="mt-2 w-full rounded-lg border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-200 px-3 py-2 shadow-sm focus:border-indigo-500 focus:ring-2 focus:ring-indigo-400"

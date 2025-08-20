@@ -23,6 +23,7 @@ const Navbar = () => {
       setIsLoggingOut(false);
     }
   };
+  
 
 
   const links = (
@@ -47,7 +48,7 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="navbar px-6 md:px-10 py-4 bg-gradient-to-r from-slate-800 via-purple-900 to-slate-800 text-white   border-b border-purple-500/30">
+    <nav className="navbar px-6 md:px-10  bg-gradient-to-r from-slate-800 via-purple-900 to-slate-800 text-white   border-b border-purple-500/30">
       {/* Start */}
       <div className="navbar-start flex items-center gap-4">
         <div className="dropdown">
